@@ -1,0 +1,71 @@
+
+Identities
+==========
+
+GET  /api/identity
+POST /api/identity
+GET  /api/identity/:identityId
+PUT	 /api/identity/:identityId
+
+
+Channels
+========
+
+GET    /api/channel
+POST   /api/channel
+DELETE /api/channel/:channelId
+PUT    /api/channel/:channelId
+GET    /api/channel/:channelId/identities
+DELETE /api/channel/:channelId/identities/:identityId
+
+Devices
+===
+GET    /api/identity/:identityId/device
+GET    /api/identity/:identityId/device/:type  type={phone,sms,email,apn,gcm}
+POST   /api/identity/:identityId/phone/:type
+
+Push
+POST   /api/push/:type/
+{
+	identities:[], // identities or channel
+	channel:''
+	payload:{}
+}
+
+/API/ME
+=======
+is an alias of the id that comes on the authorization header
+
+Identity Object
+===============
+{
+	id : '1a2b3c4d5e6f',
+	devices : {
+		phone :[{}],
+		sms :[{}],
+		email :[{}],
+		apn :[{}],
+		gcm :[{}]
+	},
+	channels : []
+}
+
+---
+backend
+---
+apiary
+dredd
+nodejs
+-restify
+-cucumberjs
+-mocha
+-mongoose
+-sinon
+-nock
+mongo
+circleci
+coveralls?
+
+---
+front
+---
