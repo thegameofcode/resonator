@@ -1,6 +1,6 @@
 {
-  "name": "notifications",
-  "version": "0.0.1",
+  "name": "@thegameofcode/hermes",
+  "version": "0.1.0",
   "description": "notifications service",
   "main": "index.js",
   "scripts": {

@@ -11,3 +11,8 @@ test:
     - npm run coverage-ci
   post:
     - npm run coverage-check
+deployment:
+  npm:
+    branch: master
+    commands:
+      - npm publish
