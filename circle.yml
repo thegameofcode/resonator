@@ -1,0 +1,13 @@
+machine:
+  node:
+    version: 0.12.3
+general:
+  artifacts:
+    - "coverage"
+test:
+  pre:
+    - npm run jshint-ci
+  override:
+    - npm run coverage-ci
+  post:
+    - npm run coverage-check
