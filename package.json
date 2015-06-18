@@ -4,10 +4,11 @@
   "description": "notifications service",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run features",
     "api": "node_modules/.bin/file-composer -i doc/api.md -o apiary.apib",
     "api-git": "git add apiary.apib",
-    "jshint": "node_modules/.bin/jshint ./lib ./features"
+    "jshint": "node_modules/.bin/jshint ./lib ./features",
+    "features": "node_modules/.bin/cucumber.js -f pretty --tags ~@ignore"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,12 @@
   ],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "chai": "^3.0.0",
+    "lodash": "^3.9.3",
+    "request": "^2.58.0",
+    "restify": "^3.0.3"
+  },
   "devDependencies": {
     "cucumber": "^0.5.1",
     "file-composer": "git://github.com/thegameofcode/file-composer#master",
@@ -29,6 +36,12 @@
   "pre-commit": [
     "api",
     "api-git",
-    "jshint"
-  ]
+    "jshint",
+    "features"
+  ],
+  "jshintConfig": {
+    "esnext": true,
+    "node": true,
+    "unused": true
+  }
 }
