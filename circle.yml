@@ -15,4 +15,5 @@ deployment:
   npm:
     branch: master
     commands:
-      - npm publish
+      - printf "_auth=$NPM_AUTH\nemail=$NPM_USERNAME\n" > npmrc
+      - npm publish --userconfig npmrc

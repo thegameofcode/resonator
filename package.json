@@ -1,5 +1,5 @@
 {
-  "name": "@thegameofcode/hermes",
+  "name": "tgoc-notifications",
   "version": "0.1.0",
   "description": "notifications service",
   "main": "index.js",
