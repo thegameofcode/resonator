@@ -15,5 +15,6 @@ deployment:
   npm:
     branch: master
     commands:
+      - npm version 0.1.$CIRCLE_BUILD_NUM
       - printf "_auth=$NPM_AUTH\nemail=$NPM_USERNAME\n" > npmrc
       - npm publish --userconfig npmrc
