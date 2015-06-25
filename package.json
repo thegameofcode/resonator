@@ -17,9 +17,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://us-gitlab.intelygenz.com/open-source/notifications.git"
+    "url": "https://github.com/thegameofcode/resonator.git"
   },
   "keywords": [
+    "notifications",
     "push",
     "email",
     "sms"
@@ -27,14 +28,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chai": "^3.0.0",
     "lodash": "^3.9.3",
     "request": "^2.58.0",
     "restify": "^3.0.3"
   },
   "devDependencies": {
+    "chai": "^3.0.0",
     "cucumber": "^0.5.1",
-    "file-composer": "git://github.com/thegameofcode/file-composer#master",
+    "file-composer": "^1.2.1",
     "istanbul": "^0.3.15",
     "jshint": "^2.8.0",
     "pre-commit": "^1.0.10"
