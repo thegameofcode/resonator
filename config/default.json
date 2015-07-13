@@ -1,0 +1,11 @@
+{
+  "app": {
+    "name": "resonator",
+    "version": "0.0.1"
+  },
+  "port": 3000,
+  "log": {
+    "level": "debug",
+    "path": "/tmp/resonator.log"
+  }
+}
