@@ -33,7 +33,8 @@
     "restify": "^3.0.3",
     "bunyan": "^1.3.5",
     "config": "^1.13.0",
-    "mongoose": "4.0.1"
+    "mongoose": "4.0.1",
+    "async": "^0.9.0"
   },
   "devDependencies": {
     "chai": "^3.0.0",

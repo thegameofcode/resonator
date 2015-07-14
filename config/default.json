@@ -13,5 +13,8 @@
   },
   "validations": {
     "email": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
+  },
+  "test": {
+    "fixtures_folder": "../fixtures/"
   }
 }
