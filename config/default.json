@@ -10,5 +10,8 @@
   },
   "db": {
     "conn": "mongodb://localhost:27017/resonator-backend"
+  },
+  "validations": {
+    "email": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
   }
 }
