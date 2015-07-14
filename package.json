@@ -4,7 +4,7 @@
   "description": "notifications service",
   "main": "index.js",
   "scripts": {
-    "test": "npm run features",
+    "test": "npm run fixtures && cucumber-js cucumber/features/ -r cucumber/features/support -r cucumber/features/",
     "test-ci": "npm run jshint-ci && npm run coverage-ci",
     "api": "node_modules/.bin/file-composer -i doc/api.md -o apiary.apib",
     "api-git": "git add apiary.apib",
@@ -13,7 +13,9 @@
     "features": "node_modules/.bin/cucumber.js -f pretty --tags ~@ignore",
     "coverage": "node_modules/.bin/istanbul cover ./node_modules/.bin/cucumber.js -- -f pretty --tags ~@ignore",
     "coverage-ci": "node_modules/.bin/istanbul cover ./node_modules/.bin/cucumber.js -- --tags ~@ignore --format json > $CIRCLE_TEST_REPORTS/tests.cucumber",
-    "coverage-check": "node_modules/.bin/istanbul check-coverage"
+    "coverage-check": "node_modules/.bin/istanbul check-coverage",
+    "test-mocha": "./node_modules/.bin/mocha --reporter nyan",
+    "fixtures": "node scripts/load_fixtures"
   },
   "repository": {
     "type": "git",
@@ -37,12 +39,15 @@
     "async": "^0.9.0"
   },
   "devDependencies": {
-    "chai": "^3.0.0",
+    "chai": "^2.3.0",
     "cucumber": "^0.5.1",
+    "cucumber-junit": "^1.2.0",
     "file-composer": "^1.2.1",
     "istanbul": "^0.3.15",
     "jshint": "^2.8.0",
-    "pre-commit": "^1.0.10"
+    "mocha": "^2.2.5",
+    "pre-commit": "^1.0.10",
+    "supertest": "^0.15.0"
   },
   "pre-commit": [
     "api",

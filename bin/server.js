@@ -24,7 +24,7 @@ mongoose.connect(config.get('db.conn'), function(err) {
   });
 
   /* Server */
-  service(options).start(function() {
-    console.log('Started server');
+  service.listen(options.port, function () {
+    console.log("service is listening on port", options.port);
   });
 });
