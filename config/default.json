@@ -1,0 +1,20 @@
+{
+  "app": {
+    "name": "resonator",
+    "version": "0.0.1"
+  },
+  "port": 3000,
+  "log": {
+    "level": "debug",
+    "path": "/tmp/resonator.log"
+  },
+  "db": {
+    "conn": "mongodb://localhost:27017/resonator-backend"
+  },
+  "validations": {
+    "email": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
+  },
+  "test": {
+    "fixtures_folder": "../fixtures/"
+  }
+}
