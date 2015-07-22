@@ -1,4 +1,8 @@
 var expect = require('chai').expect;
+var config = require('config');
+var mongoose = require('mongoose');
+var async = require('async');
+
 var checkIdentity = require('./../../lib/middleware/validate_identity');
 
 describe('Identity middleware', function() {
@@ -12,8 +16,29 @@ describe('Identity middleware', function() {
   };
 
 
+  before(function(done) {
+    mongoose.connect(config.get('db.conn'), function(error) {
+      if (error) console.error('Error while connecting:\n%\n', error);
+      done(error);
+    });
+  });
+
+  after(function(callback) {
+    async.series([
+
+      function dropData(done) {
+        mongoose.connection.db.dropDatabase(done);
+      },
+
+      function disconnect(done) {
+        mongoose.disconnect(done);
+      }
+
+    ], callback);
+  });
+
   beforeEach(function(done) {
-     request.headers = {};
+    request.headers = {};
     done();
   });
 
@@ -32,7 +57,7 @@ describe('Identity middleware', function() {
     checkIdentity()(request, res, next);
   });
 
-  it('returns a InvalidHeader for a badly formatted x-user-id header', function(done) {
+  it('returns an InvalidHeader error for a badly formatted x-user-id header', function(done) {
 
     request.headers['x-user-id'] = 'asdf1111ccccblah';
     var res = {};
@@ -40,7 +65,22 @@ describe('Identity middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('InvalidHeader');
-      expect(error.body.message).to.equal('Invalid Authorization header');
+      expect(error.body.message).to.equal('Invalid Authorization header format');
+      done();
+    };
+
+    checkIdentity()(request, res, next);
+  });
+
+  it('returns an UnauthorizedError error for a non-existing Identity object', function(done) {
+
+    request.headers['x-user-id'] = '01f0000123400000003f0043';
+    var res = {};
+
+    var next = function(error) {
+      expect(error.statusCode).to.equal(401);
+      expect(error.body.code).to.equal('UnauthorizedError');
+      expect(error.body.message).to.equal('Identity not found');
       done();
     };
 
@@ -53,6 +93,9 @@ describe('Identity middleware', function() {
     var res = {};
 
     var next = function(error) {
+      var requestIdentityId = request.identity._id;
+      var identityIdStr = request.headers['x-user-id'];
+      expect(requestIdentityId.equals(identityIdStr)).to.equal(true);
       expect(error).to.equal(undefined);
       done();
     };
