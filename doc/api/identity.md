@@ -1,36 +1,3 @@
-FORMAT: 1A
-HOST: http://notifications-host
-
-# Description
-
-Notifications is a microservice that allows to send email, sms & push notifications easily
-
-# Notifications API
-
-# Group SMS
-
-## SMS [/api/notification/sms]
-
-+ Attributes (sms Base)
-
-### Send a sms [POST]
-Send a new sms to a given phone number
-
-+ Attributes (sms Base)
-
-+ Request (application/json)
-
-            "phone" : "+11231231234",
-    + Body
-
-            {
-                "text": "this is the body of the sms"
-            }
-
-+ Response 201 (application/json)
-
-        + Attributes (sms)
-
 # Group Identity
 
 ## /api/identity
@@ -173,20 +140,3 @@ Replaces the data of the Identity object associated to the requester with the pr
             "code": "UnauthorizedError",
             "message": "Identity not found"
         }
-
-
-# Data Structures
-
-## sms Base (object)
-- phone: +11231231234 (string, required) - phone number to send the sms
-- text: 'Hello world' (string, required) - text to send via sms
-## identity Base (object)
-- devices: {} (devices Base, required) - object containing a set notification receivers grouped by type
-- channels: [] (array, required) - list of Channel object identifiers that can listen to notifications and forward them to the corresponding identites
-
-## devices Base (object)
-- sms: ['+11231231234', '+99887766543'] (array, optional) - a list of sms receivers associated to the identity
-- phone: ['111222333', '333222111'] (array, optional) - a list of phone numbers to receive notifications
-- email: ['john@doe.com'] (array, optional) - a list of email addresses to receive notifications
-- apn: [] (array, optional) - a list of APN identifiers for iOS devices to receive push notifications
-- gcm: [] (array, optional) - a list of GCM identifies for Android devices to receive push notifications

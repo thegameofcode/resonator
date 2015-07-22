@@ -14,7 +14,19 @@
   "validations": {
     "email": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
   },
+  "auth": {
+    "excludeAuthPaths": [
+      {
+        "method": "POST",
+        "endpoint": "/api/identity"
+      }
+    ]
+  },
+  "uniqueness": {
+    "devices": ["sms", "email", "apn", "gcm", "phone"]
+  },
   "test": {
-    "fixtures_folder": "../fixtures/"
+    "fixtures_folder": "/fixtures/",
+    "resources_folder": "/cucumber/test_files/"
   }
 }

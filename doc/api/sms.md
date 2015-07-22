@@ -2,21 +2,21 @@
 
 ## SMS [/api/notification/sms]
 
-+ Attributes (sms)
++ Attributes (sms Base)
 
 ### Send a sms [POST]
 Send a new sms to a given phone number
 
-+ Attributes (Game Base)
++ Attributes (sms Base)
 
 + Request (application/json)
 
+            "phone" : "+11231231234",
     + Body
-    
-		{
-			"phone" : "+11231231234",
-			"text": "this is the body of the sms"
-		}
+
+            {
+                "text": "this is the body of the sms"
+            }
 
 + Response 201 (application/json)
 

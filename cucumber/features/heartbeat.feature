@@ -9,4 +9,4 @@ Feature: Notifications component sends a 204 to confirm it is running
     | identity_id               |
     | 01f0000000000000003f0001  |
     | 01f0000000000000003f0002  |
-    | 01f0000000000000003f0004  |
+    | 01f0000000000000003f0003  |
