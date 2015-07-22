@@ -4,5 +4,9 @@
   },
   "mongoose": {
     "debug": false
+  },
+  "test": {
+    "fixtures_folder": "/fixtures/",
+    "resources_folder": "/cucumber/test_files/"
   }
 }

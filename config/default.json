@@ -25,9 +25,5 @@
   "uniqueness": {
     "devices": ["sms", "email", "apn", "gcm", "phone"],
     "channels": true
-  },
-  "test": {
-    "fixtures_folder": "/fixtures/",
-    "resources_folder": "/cucumber/test_files/"
   }
 }
