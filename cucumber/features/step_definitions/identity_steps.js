@@ -47,6 +47,7 @@ module.exports = function() {
     var request = this.buildRequest('GET', endpoint, {
       'x-user-id': this.get('identity')
     });
+
     fieldContents = this.readJSONResource(fieldContents);
 
 

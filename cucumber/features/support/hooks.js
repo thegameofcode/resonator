@@ -5,6 +5,7 @@ var config = require('config');
 var async = require('async');
 
 var log = require('../../../lib/util/logger');
+var loadFixtures = require('../../../scripts/load_fixtures');
 
 module.exports = function(){
 
@@ -19,6 +20,12 @@ module.exports = function(){
     mongoose.connect(config.get('db.conn'), callback);
   });
 
+  this.Before(function(callback) {
+
+    log.debug('Loading fixtures');
+    loadFixtures(callback);
+
+  });
   /// AFTER HOOKS
   this.AfterFeatures(function(event, callback) {
 
