@@ -72,7 +72,7 @@ var fixtureAux = {};
 
 fixtureFiles.forEach(function(file) {
   fixtureName = file.slice(0, -5);
-  fixtureFile = require(__dirname + '/' + config.get('test.fixtures_folder') + file);
+  fixtureFile = require(process.cwd() + config.get('test.fixtures_folder') + file);
 
   // Saving each fixture within a file
   fixtureFile.forEach(function(fixture) {
