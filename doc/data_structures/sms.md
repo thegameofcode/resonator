@@ -1,3 +1,3 @@
 ## sms Base (object)
-- phone: (string) - phone number to send the sms
-- text: (string) - text to send via sms
+- phone: +11231231234 (string, required) - phone number to send the sms
+- text: 'Hello world' (string, required) - text to send via sms
