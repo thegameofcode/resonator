@@ -60,4 +60,8 @@ World.registerServer = function(module) {
   server = module;
 };
 
+World.prototype.readJSONResource = function(filename) {
+  return require(process.cwd() + config.get('test.resources_folder') + filename);
+};
+
 module.exports.World = World;
