@@ -1,0 +1,8 @@
+{
+  "mailer": {
+    "mailgun": {
+      "apiKey": "",
+      "domain": ""
+    }
+  }
+}
