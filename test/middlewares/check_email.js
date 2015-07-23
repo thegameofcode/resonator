@@ -39,7 +39,7 @@ describe('Email middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(409);
       expect(error.body.code).to.equal('ConflictError');
-      expect(error.body.message).to.equal('Missing to field in email object');
+      expect(error.body.message).to.equal('Missing \'to\' property in email object');
       done();
     };
 
@@ -57,7 +57,7 @@ describe('Email middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(409);
       expect(error.body.code).to.equal('ConflictError');
-      expect(error.body.message).to.equal('Missing from field in email object');
+      expect(error.body.message).to.equal('Missing \'from\' property in email object');
       done();
     };
 
@@ -75,7 +75,7 @@ describe('Email middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(409);
       expect(error.body.code).to.equal('ConflictError');
-      expect(error.body.message).to.equal('Missing message field in email object');
+      expect(error.body.message).to.equal('Missing \'message\' property in email object');
       done();
     };
 
