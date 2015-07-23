@@ -23,19 +23,6 @@ describe('Identity middleware', function() {
     });
   });
 
-  after(function(callback) {
-    async.series([
-
-      function dropData(done) {
-        mongoose.connection.db.dropDatabase(done);
-      },
-
-      function disconnect(done) {
-        mongoose.disconnect(done);
-      }
-
-    ], callback);
-  });
 
   beforeEach(function(done) {
     request.headers = {};
