@@ -1,7 +1,6 @@
+require('./../global_conf');
+
 var expect = require('chai').expect;
-var config = require('config');
-var mongoose = require('mongoose');
-var async = require('async');
 
 var checkIdentity = require('./../../lib/middleware/validate_identity');
 
@@ -14,15 +13,6 @@ describe('Identity middleware', function() {
     method: 'GET',
     headers: {}
   };
-
-
-  before(function(done) {
-    mongoose.connect(config.get('db.conn'), function(error) {
-      if (error) console.error('Error while connecting:\n%\n', error);
-      done(error);
-    });
-  });
-
 
   beforeEach(function(done) {
     request.headers = {};

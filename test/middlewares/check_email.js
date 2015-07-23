@@ -1,7 +1,6 @@
+require('./../global_conf');
+
 var expect = require('chai').expect;
-var config = require('config');
-var mongoose = require('mongoose');
-var async = require('async');
 
 var checkEmail = require('./../../lib/middleware/check_email');
 
