@@ -1,4 +1,4 @@
-config/external_services.json.back
+config/external_services.json
 .idea/*
 # Logs
 logs
