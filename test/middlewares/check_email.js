@@ -28,6 +28,24 @@ describe('Email middleware', function() {
     done();
   });
 
+  it('returns a BadRequestError for a missing email object', function(done) {
+
+    emailObj = {};
+
+    request.body = emailObj;
+
+    var res = {};
+
+    var next = function(error) {
+      expect(error.statusCode).to.equal(400);
+      expect(error.body.code).to.equal('BadRequestError');
+      expect(error.body.message).to.equal('Missing email object');
+      done();
+    };
+
+    checkEmail()(request, res, next);
+  });
+
   it('returns a ConflictError for a missing \'to\' field', function(done) {
 
     delete emailObj.to;
