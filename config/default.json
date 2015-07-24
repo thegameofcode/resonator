@@ -3,6 +3,7 @@
     "name": "resonator",
     "version": "0.0.1"
   },
+  "host": "http://resonator.com",
   "port": 3000,
   "log": {
     "level": "debug",

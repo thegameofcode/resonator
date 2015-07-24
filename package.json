@@ -45,10 +45,12 @@
     "chai": "^2.3.0",
     "cucumber": "^0.5.1",
     "cucumber-junit": "^1.2.0",
+    "deep-diff": "^0.3.2",
     "file-composer": "^1.2.1",
     "istanbul": "^0.3.15",
     "jshint": "^2.8.0",
     "mocha": "^2.2.5",
+    "nock": "^2.9.1",
     "pre-commit": "^1.0.10",
     "supertest": "^0.15.0"
   },

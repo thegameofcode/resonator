@@ -11,7 +11,6 @@ module.exports = function() {
     });
 
     this.register('request', request);
-
     return callback();
 
   });
