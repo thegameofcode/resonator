@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "data": {
+    "messages": 2,
+    "targets": [
+      "+15005550010",
+      "+15005550011"
+    ],
+    "source": "+15005550006",
+    "text": "Hello there!"
+  }
+}
