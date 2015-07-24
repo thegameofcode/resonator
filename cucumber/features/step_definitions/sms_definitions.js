@@ -1,6 +1,10 @@
 var assert = require('assert');
-var _ = require('lodash');
+var config = require('config');
 var nock = require('nock');
+var request = require('request');
+
+nock.disableNetConnect();
+nock.enableNetConnect('127.0.0.1');
 
 module.exports = function() {
 
@@ -8,37 +12,35 @@ module.exports = function() {
 
   this.Then(/^a mock request is sent to (.*) to send an SMS message (.*) and returns (.*)$/, function(endpoint, sms, response, callback) {
 
-    var request = this.buildRequest('POST', endpoint, {
-      'x-user-id': this.get('identity')
-    });
-
     var _this = this;
 
-    var body = _this.readJSONResource(sms);
+    var smsObj = _this.readJSONResource(sms);
     var res = _this.readJSONResource(response);
 
-    var url = _.clone(request.url).replace(endpoint, '');
+    var url = config.get('host') + ':' + config.get('port');
 
-    nock(url)
-      .post(endpoint, body)
+    var nock_req = nock(url)
+      .post(endpoint, smsObj)
       .reply(res.status, res.data);
 
-    request
-      .expect(Number(res.status));
+    var requestOptions = {
+      body: smsObj,
+      json: true,
+      method: 'POST',
+      url: url + endpoint
+    };
 
-    if (body) {
-      request.send(body);
-    }
-
-    request.end(function(err, response) {
+    request(requestOptions, function(err, response) {
 
       if (err) {
         return callback(err);
       }
 
       assert.deepEqual(response.body, res.data, 'Responses do not match');
+      nock_req.done();
 
       return callback();
     });
+
   });
 };

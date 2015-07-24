@@ -6,8 +6,8 @@
     }
   },
   "twilio": {
-    "account_sid": "",
-    "auth_token": "",
+    "account_sid": "<TWILIO_ACCOUNT_SID_HERE>",
+    "auth_token": "<TWILIO_AUTH_TOKEN_HERE>",
     "max_sms_length": 1600
   }
 }
