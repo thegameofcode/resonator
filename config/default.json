@@ -3,6 +3,7 @@
     "name": "resonator",
     "version": "0.0.1"
   },
+  "host": "http://localhost",
   "port": 3000,
   "log": {
     "level": "debug",
@@ -12,7 +13,8 @@
     "conn": "mongodb://localhost:27017/resonator-backend"
   },
   "validations": {
-    "email": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
+    "email": "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$",
+    "phone_number": "^\\+?[1-9]\\d{1,14}$"
   },
   "auth": {
     "excludeAuthPaths": [
