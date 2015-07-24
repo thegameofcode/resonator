@@ -23,8 +23,8 @@ describe('SMS middleware', function() {
   beforeEach(function(done) {
     request.headers['x-user-id'] = '01f0000000000000003f0003';
     smsObj = {
-      to: '+15005550010',
-      from: '+15005550006',
+      to: ['+15005550010'],
+      from: ['+15005550006'],
       message: 'Hello Resonator!'
     };
     done();
@@ -104,7 +104,7 @@ describe('SMS middleware', function() {
 
   it('returns a BadRequestError for a bad-formatted \'to\' phone number', function(done) {
 
-    smsObj.to = '+abcd1234';
+    smsObj.to = ['+abcd1234'];
 
     request.body = smsObj;
 
@@ -121,7 +121,7 @@ describe('SMS middleware', function() {
 
   it('returns a BadRequestError for a bad-formatted \'from\' phone number', function(done) {
 
-    smsObj.from = '+abcd1234';
+    smsObj.from = ['+abcd1234'];
 
     request.body = smsObj;
 
