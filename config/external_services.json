@@ -1,0 +1,13 @@
+{
+  "mailer": {
+    "mailgun": {
+      "apiKey": "",
+      "domain": ""
+    }
+  },
+  "twilio": {
+    "account_sid": "",
+    "auth_token": "",
+    "max_sms_length": 1600
+  }
+}
