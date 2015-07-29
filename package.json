@@ -58,7 +58,7 @@
     "api",
     "api-git",
     "jshint",
-    "features"
+    "test"
   ],
   "jshintConfig": {
     "esnext": true,

@@ -39,7 +39,7 @@ describe('Email middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing email object');
+      expect(error.body.message).to.equal('Missing email parameters');
       done();
     };
 
@@ -55,9 +55,9 @@ describe('Email middleware', function() {
     var res = {};
 
     var next = function(error) {
-      expect(error.statusCode).to.equal(409);
-      expect(error.body.code).to.equal('ConflictError');
-      expect(error.body.message).to.equal('Missing \'to\' property in email object');
+      expect(error.statusCode).to.equal(400);
+      expect(error.body.code).to.equal('BadRequestError');
+      expect(error.body.message).to.equal('Missing \'to\' property in parameters');
       done();
     };
 
@@ -73,9 +73,9 @@ describe('Email middleware', function() {
     var res = {};
 
     var next = function(error) {
-      expect(error.statusCode).to.equal(409);
-      expect(error.body.code).to.equal('ConflictError');
-      expect(error.body.message).to.equal('Missing \'from\' property in email object');
+      expect(error.statusCode).to.equal(400);
+      expect(error.body.code).to.equal('BadRequestError');
+      expect(error.body.message).to.equal('Missing \'from\' property in parameters');
       done();
     };
 
@@ -91,9 +91,9 @@ describe('Email middleware', function() {
     var res = {};
 
     var next = function(error) {
-      expect(error.statusCode).to.equal(409);
-      expect(error.body.code).to.equal('ConflictError');
-      expect(error.body.message).to.equal('Missing \'message\' property in email object');
+      expect(error.statusCode).to.equal(400);
+      expect(error.body.code).to.equal('BadRequestError');
+      expect(error.body.message).to.equal('Missing \'message\' property in parameters');
       done();
     };
 
