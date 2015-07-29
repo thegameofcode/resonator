@@ -1,23 +1,46 @@
 # Group SMS
 
-## SMS [/api/notification/sms]
+## SMS [/api/push/sms]
 
 + Attributes (sms Base)
 
 ### Send a sms [POST]
-Send a new sms to a given phone number
+Send a new sms to a given set of E.164-formatted phone numbers
 
-+ Attributes (sms Base)
+| SMS Field   | Description                                                          |
+|-------------|----------------------------------------------------------------------|
+| to          | List of E.164 phone numbers which shall receive the provided message |
+| from        | E.164 phone number from which the SMS message comes from             |
+| message     | Body content of the SMS message                                      |
 
-+ Request (application/json)
++ Request
 
-            "phone" : "+11231231234",
+    + Headers
+
+            Authorization: Bearer BEWkwDA0bTTw_4dSPNI8lDPWF
     + Body
 
             {
-                "text": "this is the body of the sms"
+                "to": ["+16512223344"],
+                "from": "+34518888780",
+                "message": "Hello Resonator!"
             }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
-        + Attributes (sms)
+            {
+                "messages": 2,
+                "targets": [
+                    "+15005550010",
+                    "+15005550011"
+                ],
+                "source": "+15005550006",
+                "text": "Hello there!"
+            }
+
++ Response 500 (application/json)
+
+            {
+                "code": "InternalError",
+                "message": "Could not send SMS to destination"
+            }
