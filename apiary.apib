@@ -7,30 +7,6 @@ Notifications is a microservice that allows to send email, sms & push notificati
 
 # Notifications API
 
-# Group SMS
-
-## SMS [/api/notification/sms]
-
-+ Attributes (sms Base)
-
-### Send a sms [POST]
-Send a new sms to a given phone number
-
-+ Attributes (sms Base)
-
-+ Request (application/json)
-
-            "phone" : "+11231231234",
-    + Body
-
-            {
-                "text": "this is the body of the sms"
-            }
-
-+ Response 201 (application/json)
-
-        + Attributes (sms)
-
 # Group Identity
 
 ## /api/identity
@@ -174,12 +150,88 @@ Replaces the data of the Identity object associated to the requester with the pr
             "message": "Identity not found"
         }
 
+# Group SMS
+
+## SMS [/api/notification/sms]
+
++ Attributes (sms Base)
+
+### Send a sms [POST]
+Send a new sms to a given phone number
+
++ Attributes (sms Base)
+
++ Request (application/json)
+
+            "phone" : "+11231231234",
+    + Body
+
+            {
+                "text": "this is the body of the sms"
+            }
+
++ Response 201 (application/json)
+
+        + Attributes (sms)
+
+# Group Email
+
+## Email [/api/notification/email]
+
++ Attributes (email Base)
+
+### Send a email [POST]
+Send a new email to a given array of emails
+
+#### Attributes for the json body parameter
+
+Name | Type | Required | Description
+--- | --- | --- | --- 
+__to__ | String | Required | Array which contains email addresses to send the message.
+__from__ | String | Required | Email sender.
+__message__ | String | Required | Email Text Message to be sent.
+
++ Request (application/json; charset=utf-8)
+
+    + Body
+
+            {
+              "to": ["email1@email.com"],
+              "from": "noreply@email.com",
+              "message": "This is the body of the email"
+            }
+
++ Response 201 (application/json; charset=utf-8)
+
+            {
+              "id": "<20150729090542.29416.27304@sandboxd41385ca8b5f40eda0c863e41dc6e997.mailgun.org>",
+              "message": "Queued. Thank you."
+            }
+
++ Response 400 (application/json; charset=utf-8)
+
+            {
+              "code": "BadRequestError",
+              "message": "Missing 'to' property in parameters"
+            }
+            
++ Response 400 (application/json; charset=utf-8)
+
+            {
+              "code": "BadRequestError",
+              "message": "Missing 'from' property in parameters"
+            }
+
++ Response 400 (application/json; charset=utf-8)
+
+            {
+              "code": "BadRequestError",
+              "message": "Missing 'message' property in parameters"
+            }
+            
 
 # Data Structures
 
-## sms Base (object)
-- phone: +11231231234 (string, required) - phone number to send the sms
-- text: 'Hello world' (string, required) - text to send via sms
 ## identity Base (object)
 - devices: {} (devices Base, required) - object containing a set notification receivers grouped by type
 - channels: [] (array, required) - list of Channel object identifiers that can listen to notifications and forward them to the corresponding identites
@@ -190,3 +242,11 @@ Replaces the data of the Identity object associated to the requester with the pr
 - email: ['john@doe.com'] (array, optional) - a list of email addresses to receive notifications
 - apn: [] (array, optional) - a list of APN identifiers for iOS devices to receive push notifications
 - gcm: [] (array, optional) - a list of GCM identifies for Android devices to receive push notifications
+
+## sms Base (object)
+- phone: +11231231234 (string, required) - phone number to send the sms
+- text: 'Hello world' (string, required) - text to send via sms
+## email Base (object)
+- from: email1@email.com (string, required) - Email sender.
+- to: ['email2@email.com'] (array, required) - Array which contains email addresses to send the message.
+- message: 'This is the body of the email' (string, required) - Email Text Message to be sent.

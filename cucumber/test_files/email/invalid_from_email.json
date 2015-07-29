@@ -1,0 +1,5 @@
+{
+  "to": ["email1@email.com"],
+  "invalidFrom": "noreply@email.com",
+  "message": "The \\'from\\' email is invalid"
+}

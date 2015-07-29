@@ -1,0 +1,5 @@
+{
+  "to": ["email1@email.com"],
+  "from": "noreply@email.com",
+  "message": "This is the body of the email"
+}
