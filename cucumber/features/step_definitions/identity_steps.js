@@ -1,6 +1,6 @@
 var assert = require('assert');
 var identities = require('../../../lib/platforms/identity');
-
+var _ = require('lodash');
 module.exports = function() {
 
   this.World = require('../support/world').World;
@@ -18,6 +18,11 @@ module.exports = function() {
       assert.ok(foundIdentity !== undefined, 'Identity not found');
 
       foundIdentity = foundIdentity.toObject(); // Convert Mongoose object to plain JS object
+
+      /* Cast each 'channels' array item to String in order to compare objects */
+      foundIdentity.channels = _.map(foundIdentity.channels, function(channel) {
+        return channel.toString();
+      });
 
       /* Check fields in identity object */
       assert((foundIdentity._id).equals(response.id), 'Identity \'id\' field does not match');
@@ -62,14 +67,6 @@ module.exports = function() {
 
         return callback();
       });
-  });
-
-  this.Then(/^the response includes an Identity identifier$/, function(callback) {
-
-    var response = this.get('response');
-
-    assert.ok(response.body.id !== undefined, 'Response does not contain Identity identifier');
-    return callback();
   });
 
   this.When(/^a user makes a PUT to (.*) to change his (.*) field with value (.*)$/, function(endpoint, field, value, callback) {

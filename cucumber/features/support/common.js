@@ -1,3 +1,4 @@
+var assert = require('assert');
 
 module.exports = function() {
 
@@ -15,7 +16,10 @@ module.exports = function() {
 
     this.register('url', endpoint);
 
-    var request = this.buildRequest('POST', endpoint, {}, body);
+    var identity = this.get('identity') || {};
+    var request = this.buildRequest('POST', endpoint, {
+      'x-user-id': identity
+    }, body);
 
     this.register('request', request);
     this.register('body', body);
@@ -35,6 +39,7 @@ module.exports = function() {
     }
 
     request.end(function(err, response) {
+
       if (err) {
         return callback(err);
       }
@@ -69,5 +74,13 @@ module.exports = function() {
       return callback();
     });
 
+  });
+
+  this.Then(/^the response includes a Mongoose ObjectId identifier$/, function(callback) {
+
+    var response = this.get('response');
+
+    assert.ok(response.body.id !== undefined, 'Response does not contain a Mongoose ObjectId identifier');
+    return callback();
   });
 };
