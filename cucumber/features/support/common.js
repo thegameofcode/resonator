@@ -44,30 +44,4 @@ module.exports = function() {
     });
 
   });
-
-  this.Then(/^the mock response is (.*)$/, function(response, callback) {
-    var request = this.get('request');
-    var body = this.get('body');
-    var _this = this;
-
-    var res = _this.readJSONResource(response);
-
-    request
-      .expect(Number(res.status));
-
-    if (body) {
-      request.send(body);
-    }
-
-    request.end(function(err, response) {
-
-      if (err) {
-        return callback(err);
-      }
-
-      _this.register('response', response);
-      return callback();
-    });
-
-  });
 };
