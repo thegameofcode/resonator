@@ -19,3 +19,4 @@ deployment:
       - printf "_auth=$NPM_AUTH\nemail=$NPM_USERNAME\n" > npmrc
       - npm publish --userconfig npmrc
       - rm npmrc
+npm

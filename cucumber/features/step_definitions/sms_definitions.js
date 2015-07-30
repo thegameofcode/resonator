@@ -18,8 +18,8 @@ module.exports = function() {
     var url = config.get('external.twilio.base_url');
     var url_point = '2010-04-01/Accounts/{TestAccountSid}/SMS/Messages'.replace('{TestAccountSid}', 'Some_random_account_sid');
 
-    var nock_req = nock(url)
-      .filteringPath(function(path) {
+   nock(url)
+      .filteringPath(function() {
         return url_point;
       })
       .post(url_point)
