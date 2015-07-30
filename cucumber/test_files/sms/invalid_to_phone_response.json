@@ -1,7 +1,0 @@
-{
-  "status": 500,
-  "data": {
-    "code": "InternalError",
-    "message": "Could not send SMS to destination"
-  }
-}

@@ -15,7 +15,7 @@ module.exports = function() {
         var res = _this.readJSONResource(response);
 
         var MAILGUN_MESSAGES_BASE_URL = 'https://api.mailgun.net';
-        var MAILGUN_MESSAGES_ENDPOINT_URL = '/v3/' + config.mailer.mailgun.domain + '/messages';
+        var MAILGUN_MESSAGES_ENDPOINT_URL = '/v3/' + config.get('external.mailer.mailgun.domain') + '/messages';
 
         nock(MAILGUN_MESSAGES_BASE_URL)
             .post(MAILGUN_MESSAGES_ENDPOINT_URL)

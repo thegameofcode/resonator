@@ -1,0 +1,7 @@
+{
+  "status": 409,
+  "data": {
+    "code": "ConflictError",
+    "message": "Missing 'from' property in SMS object"
+  }
+}
