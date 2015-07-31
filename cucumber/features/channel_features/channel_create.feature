@@ -20,6 +20,6 @@ Feature: A requester asks for the creation of a Channel object
     | identity_id              | endpoint      | request_contents                 | status |
     | 01f0000000000000003f0001 | /api/channel  | channel/valid_channel_name_one   | 201    |
     | 01f0000000000000003f0002 | /api/channel  | channel/valid_channel_name_two   | 201    |
-    | 01f0000000000000003f0003 | /api/channel  | channel/duplicated_channel_name  | 500    |
+    | 01f0000000000000003f0003 | /api/channel  | channel/duplicated_channel_name  | 409    |
     | 01f0000000000000003f0001 | /api/channel  | channel/empty_channel_object     | 400    |
     | 01f0000000000000003fasdf | /api/channel  | channel/valid_channel_name_one   | 400    |

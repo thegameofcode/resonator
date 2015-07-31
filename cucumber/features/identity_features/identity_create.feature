@@ -19,4 +19,4 @@ Feature: A requester asks for the creation of an identity object
     | endpoint      | request_contents               | status |
     | /api/identity | identity/valid_identity_sms    | 201    |
     | /api/identity | identity/valid_identity_apn    | 201    |
-    | /api/identity | identity/duplicated_identity   | 500    |
+    | /api/identity | identity/duplicated_identity   | 409    |

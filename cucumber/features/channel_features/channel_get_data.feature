@@ -37,7 +37,7 @@ Feature: A requester attempts to retrieve the data for a Channel object
     | 01f0000000000000003f0002 | /api/channel/:channelId/identities  | 01f0000000000000006f0002 |  200   |
     | 01f0000000000000003f0003 | /api/channel/:channelId/identities  | 01f0000000000000006f0003 |  200   |
     | 01f0000000000000003f0004 | /api/channel/:channelId/identities  | 01f0000000000000006f0003 |  401   |
-    | 01f0000000000000003f0003 | /api/channel/:channelId/identities  | 01f0000000000000006f0005 |  500   |
+    | 01f0000000000000003f0003 | /api/channel/:channelId/identities  | 01f0000000000000006f0005 |  400   |
 
 
   Scenario Outline: check the channel data associated to some other identity object
