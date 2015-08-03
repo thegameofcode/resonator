@@ -18,5 +18,13 @@
         "domain": "test"
       }
     }
+  },
+  "googleApiKey" : "<TEST>",
+  "apn" : {
+    "pfx" : "<TEST>",
+    "passphrase" : "<TEST>",
+    "production" : false,
+    "notificationExpiry" : 3600,
+    "feedbackInterval" : 3600
   }
 }
