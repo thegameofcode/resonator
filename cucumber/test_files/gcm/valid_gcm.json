@@ -1,0 +1,7 @@
+{
+  "message": "This is the example GCM message",
+  "to" : ["01f0000000000000003f0002", "01f0000000000000003f0003"],
+  "options": {
+    "onlyGcm": true
+  }
+}
