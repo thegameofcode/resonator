@@ -12,14 +12,14 @@ module.exports = function() {
 
         var apnObj = _this.readJSONResource(apn);
         var res = _this.readJSONResource(response);
+        var appleApnResponseMocked = JSON.stringify({});
 
-        var APN_MESSAGES_BASE_URL = '';
-        var APN_MESSAGES_ENDPOINT_URL = '';
+        var APN_MESSAGES_BASE_URL = 'https://gateway.sandbox.push.apple.com:2195';
 
         nock(APN_MESSAGES_BASE_URL)
-            .post(APN_MESSAGES_ENDPOINT_URL)
+            .post()
             .times(1)
-            .reply(200, res.data);
+            .reply(200, appleApnResponseMocked);
 
         var request = this.buildRequest('POST', endpoint, {
             'x-user-id': this.get('identity')
@@ -33,6 +33,7 @@ module.exports = function() {
                 if (err) {
                     return callback(err);
                 }
+                console.log(response.body);
                 assert.deepEqual(response.body, res.data, 'Responses do not match');
 
                 return callback();
