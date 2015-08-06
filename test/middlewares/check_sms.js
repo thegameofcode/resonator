@@ -4,8 +4,8 @@ var expect = require('chai').expect;
 var _ = require('lodash');
 
 var checkSms = require('./../../lib/middleware/check_sms');
-var service_config = require( process.cwd() + '/config/external_services.json');
-var MAX_TWILIO_SMS_LENGTH = service_config.twilio.max_sms_length;
+var config = require('config');
+var MAX_TWILIO_SMS_LENGTH = config.get('twilio.max_sms_length');
 
 describe('SMS middleware', function() {
 

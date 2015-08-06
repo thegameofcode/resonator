@@ -30,5 +30,25 @@
   "test": {
     "fixtures_folder": "/fixtures/",
     "resources_folder": "/cucumber/test_files/"
+  },
+  "googleApiKey" : "<GOOGLE_API_KEY>",
+  "apn" : {
+    "pfx" : "<CERTIFICATE>",
+    "passphrase" : "<PASSPHRASE>",
+    "production" : false,
+    "notificationExpiry" : 3600,
+    "feedbackInterval" : 3600
+  },
+  "mailer": {
+    "mailgun": {
+      "apiKey": "",
+      "domain": ""
+    }
+  },
+  "twilio": {
+    "base_url": "https://api.twilio.com/",
+    "account_sid": "<TWILIO_ACCOUNT_SID_HERE>",
+    "auth_token": "<TWILIO_AUTH_TOKEN_HERE>",
+    "max_sms_length": 1600
   }
 }
