@@ -30,5 +30,13 @@
   "test": {
     "fixtures_folder": "/fixtures/",
     "resources_folder": "/cucumber/test_files/"
+  },
+  "googleApiKey" : "<GOOGLE_API_KEY>",
+  "apn" : {
+    "pfx" : "aps-test.p12",
+    "passphrase" : "<PASSPHRASE>",
+    "production" : false,
+    "notificationExpiry" : 3600,
+    "feedbackInterval" : 3600
   }
 }
