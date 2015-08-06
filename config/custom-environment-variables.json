@@ -1,0 +1,17 @@
+{
+  "mailer": {
+    "mailgun": {
+      "apiKey": "MAILGUN_APIKEY",
+      "domain": "MAILGUN_DOMAIN"
+    }
+  },
+  "googleApiKey" : "GCM_API_KEY",
+  "apn":  {
+    "pfx": "APN_PFX",
+    "passphrase": "APN_PASS_PHRASE"
+  },
+  "twilio": {
+    "account_sid": "TWILIO_ACCOUNT_SID",
+    "auth_token": "TWILIO_AUTH_TOKEN"
+  }
+}
