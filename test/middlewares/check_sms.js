@@ -102,23 +102,6 @@ describe('SMS middleware', function() {
     checkSms()(request, res, next);
   });
 
-  it('returns a BadRequestError for a bad-formatted \'to\' phone number', function(done) {
-
-    smsObj.to = ['+abcd1234'];
-
-    request.body = smsObj;
-
-    var res = {};
-    var next = function(error) {
-      expect(error.statusCode).to.equal(400);
-      expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Phone number in \'to\' field has no E.164 format');
-      done();
-    };
-
-    checkSms()(request, res, next);
-  });
-
   it('returns a BadRequestError for a bad-formatted \'from\' phone number', function(done) {
 
     smsObj.from = ['+abcd1234'];
