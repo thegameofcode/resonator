@@ -46,7 +46,7 @@ describe('Email middleware', function() {
     checkEmail()(request, res, next);
   });
 
-  it('returns a ConflictError for a missing \'to\' field', function(done) {
+  it('returns a BadRequestError for a missing \'to\' field', function(done) {
 
     delete emailObj.to;
 
@@ -64,7 +64,7 @@ describe('Email middleware', function() {
     checkEmail()(request, res, next);
   });
 
-  it('returns a ConflictError for a missing \'from\' field', function(done) {
+  it('returns a BadRequestError for a missing \'from\' field', function(done) {
 
     delete emailObj.from;
 
@@ -82,7 +82,7 @@ describe('Email middleware', function() {
     checkEmail()(request, res, next);
   });
 
-  it('returns a ConflictError for a missing \'message\' field', function(done) {
+  it('returns a BadRequestError for a missing \'message\' field', function(done) {
 
     delete emailObj.message;
 

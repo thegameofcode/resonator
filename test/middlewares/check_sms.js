@@ -48,7 +48,7 @@ describe('SMS middleware', function() {
     checkSms()(request, res, next);
   });
 
-  it('returns a ConflictError for a missing \'to\' field', function(done) {
+  it('returns a BadRequestError for a missing \'to\' field', function(done) {
 
     delete smsObj.to;
 
@@ -57,8 +57,8 @@ describe('SMS middleware', function() {
     var res = {};
 
     var next = function(error) {
-      expect(error.statusCode).to.equal(409);
-      expect(error.body.code).to.equal('ConflictError');
+      expect(error.statusCode).to.equal(400);
+      expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'to\' property in SMS object');
       done();
     };
@@ -66,7 +66,7 @@ describe('SMS middleware', function() {
     checkSms()(request, res, next);
   });
 
-  it('returns a ConflictError for a missing \'from\' field', function(done) {
+  it('returns a BadRequestError for a missing \'from\' field', function(done) {
 
     delete smsObj.from;
 
@@ -75,8 +75,8 @@ describe('SMS middleware', function() {
     var res = {};
 
     var next = function(error) {
-      expect(error.statusCode).to.equal(409);
-      expect(error.body.code).to.equal('ConflictError');
+      expect(error.statusCode).to.equal(400);
+      expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'from\' property in SMS object');
       done();
     };
@@ -84,7 +84,7 @@ describe('SMS middleware', function() {
     checkSms()(request, res, next);
   });
 
-  it('returns a ConflictError for a missing \'message\' field', function(done) {
+  it('returns a BadRequestError for a missing \'message\' field', function(done) {
 
     delete smsObj.message;
 
@@ -93,26 +93,9 @@ describe('SMS middleware', function() {
     var res = {};
 
     var next = function(error) {
-      expect(error.statusCode).to.equal(409);
-      expect(error.body.code).to.equal('ConflictError');
-      expect(error.body.message).to.equal('Missing \'message\' property in SMS object');
-      done();
-    };
-
-    checkSms()(request, res, next);
-  });
-
-  it('returns a BadRequestError for a bad-formatted \'to\' phone number', function(done) {
-
-    smsObj.to = ['+abcd1234'];
-
-    request.body = smsObj;
-
-    var res = {};
-    var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Phone number in \'to\' field has no E.164 format');
+      expect(error.body.message).to.equal('Missing \'message\' property in SMS object');
       done();
     };
 
