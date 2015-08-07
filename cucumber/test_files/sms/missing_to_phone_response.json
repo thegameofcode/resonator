@@ -1,7 +1,7 @@
 {
-  "status": 409,
+  "status": 400,
   "data": {
-    "code": "ConflictError",
+    "code": "BadRequestError",
     "message": "Missing 'to' property in SMS object"
   }
 }
