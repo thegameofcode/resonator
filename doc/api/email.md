@@ -11,7 +11,7 @@ Send a new email to a given array of emails
 
 Name | Type | Required | Description
 --- | --- | --- | --- 
-__to__ | String | Required | Array which contains email addresses to send the message.
+__to__ | String | Required | Array which contains identity ids to send the message.
 __from__ | String | Required | Email sender.
 __message__ | String | Required | Email Text Message to be sent.
 
@@ -20,7 +20,7 @@ __message__ | String | Required | Email Text Message to be sent.
     + Body
 
             {
-              "to": ["email1@email.com"],
+              "to": ["01f0000000000000003f0002"],
               "from": "noreply@email.com",
               "message": "This is the body of the email"
             }
