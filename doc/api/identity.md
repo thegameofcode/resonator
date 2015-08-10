@@ -17,33 +17,37 @@ Retrieves the Identity data associated to the requester
 
 + Response 200 (application/json; charset=utf-8)
 
-        {
-            "id": "01f0000000000000003f0001",
-            "channels": [],
-            "devices": {
-                "email": [
-                    "john@doe.com"
-                ],
-                "sms": [
-                    "+9988776655"
-                ],
-                "phone": [
-                    "+111222333",
-                    "+333222111"
-                ],
-                "apn": [],
-                "gcm": [
-                    "654C4DB3-3F68-4969-8ED2-80EA16B46EB0"
-                ]
+    + Body
+
+            {
+                "id": "01f0000000000000003f0001",
+                "channels": [],
+                "devices": {
+                    "email": [
+                        "john@doe.com"
+                    ],
+                    "sms": [
+                        "+9988776655"
+                    ],
+                    "phone": [
+                        "+111222333",
+                        "+333222111"
+                    ],
+                    "apn": [],
+                    "gcm": [
+                        "654C4DB3-3F68-4969-8ED2-80EA16B46EB0"
+                    ]
+                }
             }
-        }
 
 + Response 401 (application/json; charset=utf-8)
 
-        {
-            "code": "UnauthorizedError",
-            "message": "Missing authorization header"
-        }
+    + Body
+
+            {
+                "code": "UnauthorizedError",
+                "message": "Missing authorization header"
+            }
 
 ### Create a new Identity object [POST]
 
@@ -66,22 +70,30 @@ Creates a new Identity object with the provided data, if any
 
 + Response 201 (application/json; charset=utf-8)
 
-        {
-            "id": "55af67b553f14ff72a0f5e19"
-        }
+    + Body
+
+            {
+                "id": "55af67b553f14ff72a0f5e19"
+            }
 
 + Response 500 (application/json; charset=utf-8)
 
-        {
-            "code": "InternalError",
-            "message": "Could not create requested Identity object"
-        }
+    + Body
+
+            {
+                "code": "InternalError",
+                "message": "Could not create requested Identity object"
+            }
 
 ### Modify the Identity data associated to the requester [PUT]
 
 Replaces the data of the Identity object associated to the requester with the provided contents
 
 + Request
+
+    + Headers
+
+            Authorization: Bearer BEWkwDA0bTTw_4dSPNI8lDPWF
 
     + Body
 
@@ -136,7 +148,10 @@ Replaces the data of the Identity object associated to the requester with the pr
 
 + Response 401 (application/json; charset=utf-8)
 
-        {
-            "code": "UnauthorizedError",
-            "message": "Identity not found"
-        }
+    + Body
+
+            {
+                "code": "UnauthorizedError",
+                "message": "Identity not found"
+            }
+

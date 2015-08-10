@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var async = require('async');
 var config = require('config');
+var _ = require('lodash');
 
 var log = require('../lib/util/logger');
 
@@ -25,6 +26,11 @@ var addFixture = function(fixture, callback) {
   switch (modelName) {
     case 'Identity':
       data._id = data._id.$oid || data._id;
+      data.channels =  _.map(data.channels, fixObjectId);
+      break;
+    case 'Channel':
+      data._id = data._id.$oid || data._id;
+      data.identityRef = _.map(data.identityRef, fixObjectId);
       break;
   }
 
@@ -63,7 +69,8 @@ function fixUserObjectId(item) {
 
 // This array gives the order for reading the fixtures
 var fixtureFiles = [
- 'Identity.json'
+ 'Identity.json',
+  'Channel.json'
 ];
 
 var fixtureName = null;
