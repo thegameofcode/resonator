@@ -1,5 +1,8 @@
 {
-  "invalidTo": ["notValidEmail"],
-  "from": "noreply@email.com",
-  "message": "The \\'to\\' email is invalid"
+  "identities": [],
+  "channels": [],
+  "content": {
+    "from": "noreply@email.com",
+    "message": "The \\'to\\' email is invalid"
+  }
 }

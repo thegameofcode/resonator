@@ -20,11 +20,15 @@ describe('Email middleware', function() {
   beforeEach(function(done) {
     request.headers['x-user-id'] = '01f0000000000000003f0002';
     emailObj = {
-      to: 'target@example.com',
-      from: 'source@example.com',
-      message: 'Hello world!',
-      subject: 'Greetings'
+      channels: ['buddies'],
+      identities: ['01f0000000000000003f0002'],
+      content: {
+        from: 'source@example.com',
+        message: 'Hello world!',
+        subject: 'Greetings'
+      }
     };
+
     done();
   });
 
@@ -46,9 +50,10 @@ describe('Email middleware', function() {
     checkEmail()(request, res, next);
   });
 
-  it('returns a BadRequestError for a missing \'to\' field', function(done) {
+  it('returns a BadRequestError for empty \'identities\' and \'channels\' fields', function(done) {
 
-    delete emailObj.to;
+    delete emailObj.channels;
+    delete emailObj.identities;
 
     request.body = emailObj;
 
@@ -57,7 +62,7 @@ describe('Email middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'to\' property in parameters');
+      expect(error.body.message).to.equal('The request body must contain at least one target channel or identity');
       done();
     };
 
@@ -66,7 +71,7 @@ describe('Email middleware', function() {
 
   it('returns a BadRequestError for a missing \'from\' field', function(done) {
 
-    delete emailObj.from;
+    delete emailObj.content.from;
 
     request.body = emailObj;
 
@@ -84,7 +89,7 @@ describe('Email middleware', function() {
 
   it('returns a BadRequestError for a missing \'message\' field', function(done) {
 
-    delete emailObj.message;
+    delete emailObj.content.message;
 
     request.body = emailObj;
 
@@ -102,7 +107,7 @@ describe('Email middleware', function() {
 
   it('passes validations for a missing \'subject\' field', function(done) {
 
-    delete emailObj.subject;
+    delete emailObj.content.subject;
 
     request.body = emailObj;
 
