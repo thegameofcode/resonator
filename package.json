@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "fixtures": "node scripts/load_fixtures",
-    "test-cucumber": "NODE_ENV=test npm run fixtures && NODE_ENV=test cucumber-js cucumber/features/ -r cucumber/features/support -r cucumber/features/",
+    "test-cucumber": "NODE_ENV=test npm run fixtures && NODE_ENV=test cucumber-js cucumber/features/ --tags ~@ignore -r cucumber/features/support -r cucumber/features/",
     "test-mocha": "NODE_ENV=test npm run fixtures && NODE_ENV=test ./node_modules/.bin/mocha --reporter nyan",
     "test": "npm run test-cucumber && npm run test-mocha",
     "test-ci": "npm run jshint-ci && npm run coverage-ci",
