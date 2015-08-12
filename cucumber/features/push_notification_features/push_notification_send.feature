@@ -1,5 +1,5 @@
 Feature: the server receives a request to send a push notification
-
+@ignore
   Scenario Outline: send push notification to an identity objects
     Given an authenticated identity in the app with <identity_id>
     Then a request is sent to <endpoint> to send a push notification <notification> and returns <response>
