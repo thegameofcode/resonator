@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var config = require('config');
 var async = require('async');
+var sinon = require('sinon');
 
 var log = require('../../../lib/util/logger');
 var loadFixtures = require('../../../scripts/load_fixtures');
@@ -10,6 +11,8 @@ var loadFixtures = require('../../../scripts/load_fixtures');
 module.exports = function(){
 
 	var service = require(process.cwd() + '/lib/service.js');
+  var apnUtil = require('./../../../lib/util/apn');
+  var apnStub;
 
   this.World = require('./world.js').World;
   this.World.registerServer(service);
@@ -43,5 +46,17 @@ module.exports = function(){
 
     ], callback);
 
+  });
+
+  // Hooks for @apn tag
+  this.Before('@apn', function(callback) {
+    apnStub = sinon.stub(apnUtil, 'pushNotification');
+    apnStub.yields(null, {});
+    return callback();
+  });
+
+  this.After('@apn', function(callback) {
+    apnStub.restore();
+    return callback();
   });
 };
