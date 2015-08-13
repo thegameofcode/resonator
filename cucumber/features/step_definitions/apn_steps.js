@@ -33,9 +33,8 @@ module.exports = function() {
                 if (err) {
                     return callback(err);
                 }
-                console.log(response.body);
-                assert.deepEqual(response.body, res.data, 'Responses do not match');
 
+                assert.deepEqual(response.body, res.data, 'Responses do not match');
                 return callback();
             });
     });
