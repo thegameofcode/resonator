@@ -6,11 +6,15 @@ general:
     - "coverage"
 test:
   pre:
-    - npm run jshint-ci
+    - npm run jshint
   override:
-    - npm run coverage-ci
-  post:
-    - npm run coverage-check
+    - npm test
+    - npm run coverage-1
+    - npm run coverage-2
+    - npm run coverage-3
+    - npm run coverage-4
+    - npm run coverage-5
+    - npm run coverage-6
 deployment:
   npm:
     branch: master
@@ -19,3 +23,6 @@ deployment:
       - printf "_auth=$NPM_AUTH\nemail=$NPM_USERNAME\n" > npmrc
       - npm publish --userconfig npmrc
       - rm npmrc
+notify:
+ webhooks:
+   - url: https://igz006.herokuapp.com/api/activity/circleci
