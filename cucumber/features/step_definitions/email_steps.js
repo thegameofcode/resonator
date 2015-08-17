@@ -18,9 +18,9 @@ module.exports = function() {
         var MAILGUN_MESSAGES_ENDPOINT_URL = '/v3/' + config.get('mailer.mailgun.domain') + '/messages';
 
         nock(MAILGUN_MESSAGES_BASE_URL)
-            .post(MAILGUN_MESSAGES_ENDPOINT_URL)
-            .times(1)
-            .reply(200, res.data);
+          .persist() // Required since multiple requests can be made in parallel from the platform
+          .post(MAILGUN_MESSAGES_ENDPOINT_URL)
+          .reply(200, res.data);
 
         var request = this.buildRequest('POST', endpoint, {
             'x-user-id': this.get('identity')

@@ -1,0 +1,8 @@
+{
+  "identities": ["01f0000000000000003f0002"],
+  "channels": [],
+  "content": {
+    "from": "noreply@email.com",
+    "message": "This is the body of the email"
+  }
+}

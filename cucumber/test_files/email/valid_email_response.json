@@ -1,7 +1,6 @@
 {
   "status": 200,
   "data": {
-    "id": "<20150729090542.29416.27304@sandboxd41385ca8b5f40eda0c863e41dc6e997.mailgun.org>",
-    "message": "Queued. Thank you."
+    "output": "Queued notifications"
   }
 }
