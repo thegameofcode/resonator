@@ -1,0 +1,7 @@
+{
+  "status": 400,
+  "data": {
+    "code": "BadRequestError",
+    "message": "Missing 'message' property in parameters"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "identities": ["01f0000000000000003f0002"],
+  "channels": ["buddies"],
+  "content": {
+    "from": "noreply@email.com"
+  }
+}
