@@ -1,6 +1,6 @@
 {
   "identities": ["01f0000000000000003f0002"],
-  "channels": ["01f0000000000000006f0001"],
+  "channels": ["buddies"],
   "content": {
     "from": "",
     "message": "The \\'from\\' email is invalid"

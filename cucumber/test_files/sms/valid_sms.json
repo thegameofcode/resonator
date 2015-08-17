@@ -1,5 +1,8 @@
 {
-  "to": ["01f0000000000000003f0002", "01f0000000000000003f0003"],
-  "from": "+15005550006",
-  "message": "Hello there!"
+  "identities": ["01f0000000000000003f0002", "01f0000000000000003f0003"],
+  "channels": ["friends"],
+  "content": {
+    "from": "+15005550006",
+    "message": "Hello there!"
+  }
 }

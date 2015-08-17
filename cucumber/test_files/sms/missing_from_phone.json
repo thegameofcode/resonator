@@ -1,4 +1,7 @@
 {
-  "to": ["+15005550006"],
-  "message": "This should raise a middleware error."
+  "identities": ["01f0000000000000003f0002", "01f0000000000000003f0003"],
+  "channels": ["friends"],
+  "content": {
+    "message": "Hello there!"
+  }
 }

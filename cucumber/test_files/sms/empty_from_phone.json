@@ -1,5 +1,8 @@
 {
-  "to": ["+15005550010", "+15005550011"],
-  "from": "",
-  "message": "This should raise a middleware 'Missing from' error"
+  "identities": ["01f0000000000000003f0002", "01f0000000000000003f0003"],
+  "channels": ["friends"],
+  "content": {
+    "from": "",
+    "message": "Hello there!"
+  }
 }
