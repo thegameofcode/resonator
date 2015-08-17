@@ -1,4 +1,6 @@
 {
-  "from": "+15005550006",
-  "message": "This should raise a middleware error"
+  "content": {
+    "from": "15005550006",
+    "message": "This should raise a middleware error"
+  }
 }

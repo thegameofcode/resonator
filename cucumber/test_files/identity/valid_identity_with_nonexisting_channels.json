@@ -1,0 +1,10 @@
+{
+  "devices": {
+    "sms": [],
+    "email": [],
+    "phone": [],
+    "apn": [],
+    "gcm": []
+  },
+  "channels": ["buddies", "friends", "non_existing", "another_non_existing"]
+}

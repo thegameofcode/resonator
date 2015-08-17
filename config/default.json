@@ -43,7 +43,8 @@
     "mailgun": {
       "apiKey": "",
       "domain": "",
-      "batch_limit": 1000
+      "batch_limit": 1000,
+      "custom_batch_limit": 10
     }
   },
   "twilio": {

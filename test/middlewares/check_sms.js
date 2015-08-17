@@ -23,9 +23,12 @@ describe('SMS middleware', function() {
   beforeEach(function(done) {
     request.headers['x-user-id'] = '01f0000000000000003f0003';
     smsObj = {
-      to: ['+15005550010'],
-      from: ['+15005550006'],
-      message: 'Hello Resonator!'
+      identities: ["01f0000000000000003f0002", "01f0000000000000003f0003"],
+      channels: ["friends"],
+      content: {
+        from: "+15005550006",
+        message: "Hello there!"
+      }
     };
     done();
   });
@@ -41,16 +44,17 @@ describe('SMS middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing SMS object');
+      expect(error.body.message).to.equal('Missing SMS parameters');
       done();
     };
 
     checkSms()(request, res, next);
   });
 
-  it('returns a BadRequestError for a missing \'to\' field', function(done) {
+  it('returns a BadRequestError for missing \'identities\' and \'channels\' fields', function(done) {
 
-    delete smsObj.to;
+    delete smsObj.identities;
+    delete smsObj.channels;
 
     request.body = smsObj;
 
@@ -59,7 +63,7 @@ describe('SMS middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'to\' property in SMS object');
+      expect(error.body.message).to.equal('The request body must contain at least one target channel or identity');
       done();
     };
 
@@ -68,7 +72,7 @@ describe('SMS middleware', function() {
 
   it('returns a BadRequestError for a missing \'from\' field', function(done) {
 
-    delete smsObj.from;
+    delete smsObj.content.from;
 
     request.body = smsObj;
 
@@ -77,7 +81,7 @@ describe('SMS middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'from\' property in SMS object');
+      expect(error.body.message).to.equal('Missing \'from\' property in parameters');
       done();
     };
 
@@ -86,7 +90,7 @@ describe('SMS middleware', function() {
 
   it('returns a BadRequestError for a missing \'message\' field', function(done) {
 
-    delete smsObj.message;
+    delete smsObj.content.message;
 
     request.body = smsObj;
 
@@ -95,24 +99,7 @@ describe('SMS middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'message\' property in SMS object');
-      done();
-    };
-
-    checkSms()(request, res, next);
-  });
-
-  it('returns a BadRequestError for a bad-formatted \'from\' phone number', function(done) {
-
-    smsObj.from = ['+abcd1234'];
-
-    request.body = smsObj;
-
-    var res = {};
-    var next = function(error) {
-      expect(error.statusCode).to.equal(400);
-      expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Phone number in \'from\' field has no E.164 format');
+      expect(error.body.message).to.equal('Missing \'message\' property in parameters');
       done();
     };
 
@@ -121,7 +108,7 @@ describe('SMS middleware', function() {
 
   it('returns a BadRequestError for a message that exceeds Twilio\'s limit', function(done) {
 
-    smsObj.message = _.repeat('a', MAX_TWILIO_SMS_LENGTH + 1);
+    smsObj.content.message = _.repeat('a', MAX_TWILIO_SMS_LENGTH + 1);
 
     request.body = smsObj;
 
@@ -138,7 +125,7 @@ describe('SMS middleware', function() {
 
   it('passes all validation for an SMS message with length equal to Twilio\'s limit', function(done) {
 
-    smsObj.message = _.repeat('a', MAX_TWILIO_SMS_LENGTH);
+    smsObj.content.message = _.repeat('a', MAX_TWILIO_SMS_LENGTH);
 
     request.body = smsObj;
 
@@ -153,7 +140,7 @@ describe('SMS middleware', function() {
 
   it('passes all validation for an SMS message with length less than Twilio\'s limit', function(done) {
 
-    smsObj.message = _.repeat('a', 100);
+    smsObj.content.message = _.repeat('a', 100);
 
     request.body = smsObj;
 

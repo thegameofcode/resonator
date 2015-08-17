@@ -84,4 +84,29 @@ module.exports = function() {
 
     return callback();
   });
+
+  this.Then(/^next GET request to (.*) returns a response with (.*) channels$/, function(endpoint, numChannels, callback) {
+
+    numChannels = Number(numChannels);
+
+    var createdIdentityId = this.get('response').body.id;
+
+    var request = this.buildRequest('GET', endpoint, {
+      'x-user-id': createdIdentityId
+    });
+
+    request
+      .expect(200)
+      .end(function(err, response) {
+
+        if (err) {
+          return callback(err);
+        }
+
+        var responseChannelsNumber = response.body.channels.length;
+        assert.equal(responseChannelsNumber, numChannels, 'Number of channels does not match');
+
+        return callback();
+      });
+  });
 };

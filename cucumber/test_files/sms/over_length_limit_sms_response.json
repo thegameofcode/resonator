@@ -2,6 +2,6 @@
   "status": 400,
   "data": {
     "code": "BadRequestError",
-    "message": "Missing 'from' property in parameters"
+    "message": "Message cannot be longer than 1600 characters"
   }
 }

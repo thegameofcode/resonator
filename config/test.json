@@ -4,5 +4,11 @@
   },
   "mongoose": {
     "debug": false
+  },
+  "mailer": {
+    "mailgun": {
+      "batch_limit": 1000,
+      "custom_batch_limit": 2
+    }
   }
 }

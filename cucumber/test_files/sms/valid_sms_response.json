@@ -1,12 +1,6 @@
 {
   "status": 200,
   "data": {
-    "messages": 2,
-    "targets": [
-      "444555666",
-      "333666999"
-    ],
-    "source": "+15005550006",
-    "text": "Hello there!"
+    "output": "Queued notifications"
   }
 }
