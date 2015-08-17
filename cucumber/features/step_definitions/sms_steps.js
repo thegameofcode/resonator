@@ -35,7 +35,6 @@ module.exports = function() {
       .expect(res.status)
       .end(function(err, response) {
 
-        console.log('SMS', err, response.body);
         if (err) {
           return callback(err);
         }

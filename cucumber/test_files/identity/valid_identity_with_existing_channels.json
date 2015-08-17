@@ -1,0 +1,10 @@
+{
+  "devices": {
+    "sms": [],
+    "email": ["john@appleseed.com"],
+    "phone": [],
+    "apn": [],
+    "gcm": []
+  },
+  "channels": ["friends", "buddies"]
+}
