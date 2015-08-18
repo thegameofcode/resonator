@@ -16,7 +16,6 @@
     "coverage-ci-mocha": "NODE_ENV=test npm run fixtures && NODE_ENV=test node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./coverage-mocha -- -R spec > $CIRCLE_TEST_REPORTS/tests.mocha",
     "coverage-ci": "npm run coverage-ci-cucumber && npm run coverage-ci-mocha",
     "coverage-check": "node_modules/.bin/istanbul check-coverage",
-
     "coverage-1": "NODE_ENV=test npm run fixtures && NODE_ENV=test node_modules/.bin/istanbul cover ./node_modules/.bin/cucumber.js --lcovonly -- cucumber/features/ --tags ~@ignore --format json > /dev/null",
     "coverage-2": "cp coverage/lcov.info coverage/cucumber.lcov",
     "coverage-3": "NODE_ENV=test npm run fixtures && NODE_ENV=test node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./coverage-mocha -- -R spec > /dev/null",
@@ -51,6 +50,7 @@
   },
   "devDependencies": {
     "blanket": "^1.1.7",
+    "chai": "^3.2.0",
     "coveralls": "^2.11.4",
     "cucumber": "^0.5.2",
     "cucumber-junit": "^1.2.0",

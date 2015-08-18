@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 var checkSms = require('./../../lib/middleware/check_sms');
 var config = require('config');
-var MAX_TWILIO_SMS_LENGTH = config.get('twilio.max_sms_length');
+var MAX_TWILIO_SMS_LENGTH = config.get('transport.twilio.max_sms_length');
 
 describe('SMS middleware', function() {
 
