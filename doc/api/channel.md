@@ -19,18 +19,16 @@ Retrieves the list of Channel objects associated to the requester's Identity obj
 
     + Body
 
-            {
-                [
-                    {
-                        "id": "01f0000000000000006f0001",
-                        "name": "buddies"
-                    },
-                    {
-                        "id": "01f0000000000000006f0002",
-                        "name": "friends"
-                    }
-                ]
-            }
+            [
+                {
+                    "id": "01f0000000000000006f0001",
+                    "name": "buddies"
+                },
+                {
+                    "id": "01f0000000000000006f0002",
+                    "name": "friends"
+                }
+            ]
 
 + Response 401 (application/json; charset=utf-8)
 
@@ -77,7 +75,12 @@ Creates a new Channel object with the provided name in the data store
 Replaces the data of the Channel object identified by the provided channel Id.
 
 + Parameters
-    + id (required, string) ... The ID of the Channel object to update
+    + id (required, string, `12345`)
+
+        The ID of the Channel object to update
+
++ Attributes
+    + id: 12345 (string)
 
 + Request
 
@@ -107,7 +110,7 @@ Replaces the data of the Channel object identified by the provided channel Id.
 Delete the Channel object identified by the provided channel Id.
 
 + Parameters
-    + id (string) ... The ID of the Channel object to delete
+    + id (required, string, `12345`) ... The ID of the Channel object to delete
 
 + Request
 
@@ -133,7 +136,7 @@ Delete the Channel object identified by the provided channel Id.
 Retrieves the list of Identity objects associated to the specified Channel object
 
 + Parameters
-    + id (string) ... The ID of the Channel object to retrieve data from
+    + id (required, string, `12345`) ... The ID of the Channel object to retrieve data from
 
 + Request
 
@@ -186,8 +189,8 @@ Retrieves the list of Identity objects associated to the specified Channel objec
 Delete an Identity identifier from a Channel object
 
 + Parameters
-    + channelId (string) ... The Channel identifier from which the Identity shall be removed
-    + identityId (string) ... The Identity identifier that shall be removed from the Channel object
+    + channelId (required, string, `12345`) ... The Channel identifier from which the Identity shall be removed
+    + identityId (required, string, `5678`) ... The Identity identifier that shall be removed from the Channel object
 
 + Request
 
@@ -205,3 +208,4 @@ Delete an Identity identifier from a Channel object
                     "code": "InternalError",
                     "message": "Could not delete provided Identity object from channel 01f0000000000000006f0002"
                 }
+

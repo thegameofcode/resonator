@@ -4,6 +4,7 @@
   "description": "notifications service",
   "main": "index.js",
   "scripts": {
+    "start": "node ./bin/server.js",
     "fixtures": "node scripts/load_fixtures",
     "test": "npm run test-cucumber && npm run test-mocha",
     "test-cucumber": "NODE_ENV=test npm run fixtures && NODE_ENV=test cucumber-js cucumber/features/ --tags ~@ignore -r cucumber/features/support -r cucumber/features/",

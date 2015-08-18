@@ -1,11 +1,13 @@
 FORMAT: 1A
 HOST: http://notifications-host
 
-# Description
+# Resonator microservice API
 
-Notifications is a microservice that allows to send email, sms & push notifications easily
+## Introduction
 
-# Notifications API
+Notifications is a microservice that allows to send email, sms & push notifications easily.
+
+Source code is available [here](https://github.com/thegameofcode/resonator).
 
 # Group Identity
 
@@ -57,6 +59,7 @@ Retrieves the Identity data associated to the requester
                 "code": "UnauthorizedError",
                 "message": "Missing authorization header"
             }
+
 
 ### Create a new Identity object [POST]
 
@@ -120,9 +123,10 @@ Replaces the data of the Identity object associated to the requester with the pr
 ### Retrieve the Identity data associated to an Identity identifier [GET]
 
 + Parameters
-    + id (string)
+    + id (required, string, `12345`)
 
         The ID of the desired Identity object
+
 
 + Request
 
@@ -165,6 +169,7 @@ Replaces the data of the Identity object associated to the requester with the pr
             }
 
 
+
 # Group Channel
 
 ## /api/channel
@@ -186,18 +191,16 @@ Retrieves the list of Channel objects associated to the requester's Identity obj
 
     + Body
 
-            {
-                [
-                    {
-                        "id": "01f0000000000000006f0001",
-                        "name": "buddies"
-                    },
-                    {
-                        "id": "01f0000000000000006f0002",
-                        "name": "friends"
-                    }
-                ]
-            }
+            [
+                {
+                    "id": "01f0000000000000006f0001",
+                    "name": "buddies"
+                },
+                {
+                    "id": "01f0000000000000006f0002",
+                    "name": "friends"
+                }
+            ]
 
 + Response 401 (application/json; charset=utf-8)
 
@@ -244,7 +247,12 @@ Creates a new Channel object with the provided name in the data store
 Replaces the data of the Channel object identified by the provided channel Id.
 
 + Parameters
-    + id (required, string) ... The ID of the Channel object to update
+    + id (required, string, `12345`)
+
+        The ID of the Channel object to update
+
++ Attributes
+    + id: 12345 (string)
 
 + Request
 
@@ -274,7 +282,7 @@ Replaces the data of the Channel object identified by the provided channel Id.
 Delete the Channel object identified by the provided channel Id.
 
 + Parameters
-    + id (string) ... The ID of the Channel object to delete
+    + id (required, string, `12345`) ... The ID of the Channel object to delete
 
 + Request
 
@@ -300,7 +308,7 @@ Delete the Channel object identified by the provided channel Id.
 Retrieves the list of Identity objects associated to the specified Channel object
 
 + Parameters
-    + id (string) ... The ID of the Channel object to retrieve data from
+    + id (required, string, `12345`) ... The ID of the Channel object to retrieve data from
 
 + Request
 
@@ -353,8 +361,8 @@ Retrieves the list of Identity objects associated to the specified Channel objec
 Delete an Identity identifier from a Channel object
 
 + Parameters
-    + channelId (string) ... The Channel identifier from which the Identity shall be removed
-    + identityId (string) ... The Identity identifier that shall be removed from the Channel object
+    + channelId (required, string, `12345`) ... The Channel identifier from which the Identity shall be removed
+    + identityId (required, string, `5678`) ... The Identity identifier that shall be removed from the Channel object
 
 + Request
 
@@ -373,6 +381,7 @@ Delete an Identity identifier from a Channel object
                     "message": "Could not delete provided Identity object from channel 01f0000000000000006f0002"
                 }
 
+
 # Group SMS
 
 ## SMS [/api/notification/sms]
@@ -385,7 +394,7 @@ Send a new sms to a given phone number
 #### Attributes for the json body parameter
 
 Name | Type | Required | Description
---- | --- | --- | --- 
+--- | --- | --- | ---
 __to__ | String | Required | Array which contains identity ids to send the message.
 __from__ | String | Required | Phone Number sender.
 __message__ | String | Required | Sms Text Message to be sent.
@@ -395,14 +404,19 @@ __message__ | String | Required | Sms Text Message to be sent.
     + Body
 
             {
-              "to": ["01f0000000000000003f0002", "01f0000000000000003f0003"],
-              "from": "+15005550006",
-              "message": "Hello there!"
+                "to": [
+                    "01f0000000000000003f0002",
+                    "01f0000000000000003f0003"
+                ],
+                "from": "+15005550006",
+                "message": "Hello there!"
             }
 
 + Response 201 (application/json)
 
-        + Attributes (sms)
+             {}
+
+
 
 # Group Email
 
@@ -416,7 +430,7 @@ Send a new email to a given array of emails
 #### Attributes for the json body parameter
 
 Name | Type | Required | Description
---- | --- | --- | --- 
+--- | --- | --- | ---
 __to__ | String | Required | Array which contains identity ids to send the message.
 __from__ | String | Required | Email sender.
 __message__ | String | Required | Email Text Message to be sent.
@@ -444,7 +458,7 @@ __message__ | String | Required | Email Text Message to be sent.
               "code": "BadRequestError",
               "message": "Missing 'to' property in parameters"
             }
-            
+
 + Response 400 (application/json; charset=utf-8)
 
             {
@@ -458,10 +472,11 @@ __message__ | String | Required | Email Text Message to be sent.
               "code": "BadRequestError",
               "message": "Missing 'message' property in parameters"
             }
-            
+
+
 # Group Push Notifications
 
-## Email [/api/notification/push]
+## Push [/api/notification/push]
 
 + Attributes (push Base)
 
@@ -471,7 +486,7 @@ Send a new email to a given array of emails
 #### Attributes for the json body parameter
 
 Name | Type | Required | Description
---- | --- | --- | --- 
+--- | --- | --- | ---
 __to__ | String | Required | Array which contains identities ids.
 __message__ | String | Required | Push Text Message to be sent.
 __optionals__ | String | Optional | Object containing all send options (onlyGcm || onlyApn).
@@ -504,7 +519,7 @@ __optionals__ | String | Optional | Object containing all send options (onlyGcm 
               "code": "BadRequestError",
               "message": "Missing 'to' property in parameters"
             }
-            
+
 
 + Response 400 (application/json; charset=utf-8)
 
@@ -513,11 +528,14 @@ __optionals__ | String | Optional | Object containing all send options (onlyGcm 
               "message": "Missing 'message' property in parameters"
             }
 
+
+
 # Data Structures
 
 ## identity Base (object)
 - devices: {} (devices Base, required) - object containing a set notification receivers grouped by type
 - channels: [] (array, required) - list of Channel object identifiers that can listen to notifications and forward them to the corresponding identites
+
 
 ## devices Base (object)
 - sms: ['+11231231234', '+99887766543'] (array, optional) - a list of sms receivers associated to the identity
@@ -526,18 +544,25 @@ __optionals__ | String | Optional | Object containing all send options (onlyGcm 
 - apn: [] (array, optional) - a list of APN identifiers for iOS devices to receive push notifications
 - gcm: [] (array, optional) - a list of GCM identifies for Android devices to receive push notifications
 
+
 ## channel Base (object)
 - name: +11231231234 (string, required) - human-friendly channel identifier
 - identitiesRef: ['01f0000000000000003f0001'] (array, optional) - array with identity identifiers which belong to the channel
+
+
 ## sms Base (object)
 - to: ['01f0000000000000003f0002', '01f0000000000000003f0003'] (array, required) - phone number to send the sms
 - message: 'Hello world' (string, required) - text to send via sms
 - from: +11231231234 (string, required) - phone number sender the sms
+
+
 ## email Base (object)
 - from: email1@email.com (string, required) - Email sender.
 - to: ['01f0000000000000003f0002', '01f0000000000000003f0003'] (array, required) - Array which contains identity ids to send the message.
 - message: 'This is the body of the email' (string, required) - Email Text Message to be sent.
 
+
 ## push Base (object)
 - to: ['01f0000000000000003f0002', '01f0000000000000003f0003'] (array, required) - Array which contains identities ids.
 - message: 'This is the body notification data' (string, required) - Push Text Message to be sent.
+

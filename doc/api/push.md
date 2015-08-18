@@ -1,6 +1,6 @@
 # Group Push Notifications
 
-## Email [/api/notification/push]
+## Push [/api/notification/push]
 
 + Attributes (push Base)
 
@@ -10,7 +10,7 @@ Send a new email to a given array of emails
 #### Attributes for the json body parameter
 
 Name | Type | Required | Description
---- | --- | --- | --- 
+--- | --- | --- | ---
 __to__ | String | Required | Array which contains identities ids.
 __message__ | String | Required | Push Text Message to be sent.
 __optionals__ | String | Optional | Object containing all send options (onlyGcm || onlyApn).
@@ -43,7 +43,7 @@ __optionals__ | String | Optional | Object containing all send options (onlyGcm 
               "code": "BadRequestError",
               "message": "Missing 'to' property in parameters"
             }
-            
+
 
 + Response 400 (application/json; charset=utf-8)
 
@@ -51,3 +51,4 @@ __optionals__ | String | Optional | Object containing all send options (onlyGcm 
               "code": "BadRequestError",
               "message": "Missing 'message' property in parameters"
             }
+

@@ -49,6 +49,7 @@ Retrieves the Identity data associated to the requester
                 "message": "Missing authorization header"
             }
 
+
 ### Create a new Identity object [POST]
 
 Creates a new Identity object with the provided data, if any
@@ -111,9 +112,10 @@ Replaces the data of the Identity object associated to the requester with the pr
 ### Retrieve the Identity data associated to an Identity identifier [GET]
 
 + Parameters
-    + id (string)
+    + id (required, string, `12345`)
 
         The ID of the desired Identity object
+
 
 + Request
 
@@ -154,4 +156,5 @@ Replaces the data of the Identity object associated to the requester with the pr
                 "code": "UnauthorizedError",
                 "message": "Identity not found"
             }
+
 
