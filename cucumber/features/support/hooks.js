@@ -12,7 +12,8 @@ module.exports = function(){
 
 	var service = require(process.cwd() + '/lib/service.js');
   var apnUtil = require('./../../../lib/util/apn');
-  var apnStub;
+  var gcmUtil = require('./../../../lib/util/gcm');
+  var apnStub, gcmStub;
 
   this.World = require('./world.js').World;
   this.World.registerServer(service);
@@ -57,6 +58,17 @@ module.exports = function(){
 
   this.After('@apn', function(callback) {
     apnStub.restore();
+    return callback();
+  });
+
+  this.Before('@gcm', function(callback) {
+    gcmStub = sinon.stub(gcmUtil, 'sendGCM');
+    gcmStub.yields(null, {});
+    return callback();
+  });
+
+  this.After('@gcm', function(callback) {
+    gcmStub.restore();
     return callback();
   });
 };

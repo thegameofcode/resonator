@@ -29,14 +29,16 @@
   },
   "transport": {
     "gcm": {
-      "googleApiKey" : "<GOOGLE_API_KEY>"
+      "googleApiKey" : "<GOOGLE_API_KEY>",
+      "batch_limit": 500
     },
     "apn": {
       "pfx" : "<CERTIFICATE>",
       "passphrase" : "<PASSPHRASE>",
       "production" : false,
       "notificationExpiry" : 3600,
-      "feedbackInterval" : 3600
+      "feedbackInterval" : 3600,
+      "batch_limit": 500
     },
     "twilio": {
       "base_url": "https://api.twilio.com/",
