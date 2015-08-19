@@ -1,0 +1,7 @@
+{
+  "status": 400,
+  "data": {
+    "code": "BadRequestError",
+    "message": "The request body must contain at least one target channel or identity"
+  }
+}

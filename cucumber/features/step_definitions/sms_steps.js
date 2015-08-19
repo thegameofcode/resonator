@@ -15,7 +15,7 @@ module.exports = function() {
     var smsObj = _this.readJSONResource(sms);
     var res = _this.readJSONResource(response);
 
-    var url = config.get('twilio.base_url');
+    var url = config.get('transport.twilio.base_url');
     var url_point = '2010-04-01/Accounts/{TestAccountSid}/SMS/Messages'.replace('{TestAccountSid}', 'Some_random_account_sid');
 
    nock(url)

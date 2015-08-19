@@ -9,7 +9,7 @@ test:
     - npm run jshint
     - dredd
   override:
-    - npm test
+    - npm run test
     - npm run coverage-1
     - npm run coverage-2
     - npm run coverage-3
