@@ -1,5 +1,4 @@
 var _ = require('lodash'),
-  config = require('config'),
   qs = require('querystring'),
   test = require('supertest');
 
@@ -47,21 +46,13 @@ World.prototype.buildRequest = function(method, endpoint, headers) {
   return request;
 };
 
-World.prototype.toBool = function(str) {
-  return (str === 'true');
-};
-
-World.prototype.readJSONResource = function(filename) {
-  return require('../../' + config.get('test.resources_folder') + filename);
-};
-
 World.registerServer = function(module) {
 
   server = module;
 };
 
 World.prototype.readJSONResource = function(filename) {
-  return require(process.cwd() + config.get('test.resources_folder') + filename);
+  return require(process.cwd() + '/cucumber/test_files/' + filename);
 };
 
 module.exports.World = World;

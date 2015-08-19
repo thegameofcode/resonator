@@ -1,7 +1,0 @@
-{
-  "message": "This is the example APN message",
-  "to" : ["01f0000000000000003f0002", "01f0000000000000003f0003"],
-  "options": {
-    "onlyApn": true
-  }
-}
