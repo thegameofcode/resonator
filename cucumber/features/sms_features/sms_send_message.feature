@@ -8,6 +8,7 @@ Feature: the server receives a request to send SMS messages
       | identity_id              | endpoint              | sms                            | response                                |
       | 01f0000000000000003f0001 | /api/notification/sms | sms/valid_sms.json             | sms/valid_sms_response.json             |
       | 01f0000000000000003f0001 | /api/notification/sms | sms/empty_sms.json             | sms/empty_sms_response.json             |
+      | 01f0000000000000003f0001 | /api/notification/sms | sms/invalid_to_sms.json        | sms/invalid_to_sms_response.json        |
       | 01f0000000000000003f0001 | /api/notification/sms | sms/over_length_limit_sms.json | sms/over_length_limit_sms_response.json |
       | 01f0000000000000003f0002 | /api/notification/sms | sms/missing_to_phone.json      | sms/missing_to_phone_response.json      |
       | 01f0000000000000003f0003 | /api/notification/sms | sms/missing_from_phone.json    | sms/missing_from_phone_response.json    |
