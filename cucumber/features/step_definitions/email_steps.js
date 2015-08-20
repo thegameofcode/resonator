@@ -1,4 +1,3 @@
-var assert = require('assert');
 var config = require('config');
 var nock = require('nock');
 
@@ -15,7 +14,7 @@ module.exports = function() {
         var res = _this.readJSONResource(response);
 
         var MAILGUN_MESSAGES_BASE_URL = 'https://api.mailgun.net';
-        var MAILGUN_MESSAGES_ENDPOINT_URL = '/v3/' + config.get('mailer.mailgun.domain') + '/messages';
+        var MAILGUN_MESSAGES_ENDPOINT_URL = '/v3/' + config.get('transport.mailgun.domain') + '/messages';
 
         nock(MAILGUN_MESSAGES_BASE_URL)
           .persist() // Required since multiple requests can be made in parallel from the platform
@@ -29,14 +28,6 @@ module.exports = function() {
         request
             .send(emailObj)
             .expect(res.status)
-            .end(function(err, response) {
-
-            if (err) {
-                return callback(err);
-            }
-            assert.deepEqual(response.body, res.data, 'Responses do not match');
-
-            return callback();
-        });
+            .end(callback);
     });
 };

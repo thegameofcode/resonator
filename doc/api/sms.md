@@ -10,7 +10,7 @@ Send a new sms to a given phone number
 #### Attributes for the json body parameter
 
 Name | Type | Required | Description
---- | --- | --- | --- 
+--- | --- | --- | ---
 __to__ | String | Required | Array which contains identity ids to send the message.
 __from__ | String | Required | Phone Number sender.
 __message__ | String | Required | Sms Text Message to be sent.
@@ -20,11 +20,14 @@ __message__ | String | Required | Sms Text Message to be sent.
     + Body
 
             {
-              "to": ["01f0000000000000003f0002", "01f0000000000000003f0003"],
-              "from": "+15005550006",
-              "message": "Hello there!"
+                "identities": [],
+                "channels": ["buddies"],
+                "content": {
+                    "from": "+15005550010",
+                    "message": "Hola holita RESONATOR"
+                }
             }
 
-+ Response 201 (application/json)
++ Response 204
 
-        + Attributes (sms)
+

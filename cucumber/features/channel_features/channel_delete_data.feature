@@ -10,10 +10,8 @@ Feature: A requester attempts to delete some Channel object's data
     | 01f0000000000000003f0001 | /api/channel/:channelId  | 01f0000000000000006f0001 | 204    |
     | 01f0000000000000003f0002 | /api/channel/:channelId  | 01f0000000000000006f0002 | 204    |
     | 01f0000000000000003f0002 | /api/channel/:channelId  | 01f0000000000000006fasdf | 400    |
-    | 01f0000000000000003fasdf | /api/channel/:channelId  | 01f0000000000000006f0002 | 400    |
     | 01f0000000000000003f0002 | /api/channel/:channelId  | 01f0000000000000006f0004 | 400    |
-    | 01f0000000000000003f0004 | /api/channel/:channelId  | 01f0000000000000006f0001 | 401    |
-
+    | 01f0000000000000003f0004 | /api/channel/:channelId  | 01f0000000000000006f0001 | 204    |
 
 
   Scenario Outline: delete an Identity object from a Channel object
@@ -26,9 +24,9 @@ Feature: A requester attempts to delete some Channel object's data
     | 01f0000000000000003f0003 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0002 | 01f0000000000000006f0002 | 204    |
     | 01f0000000000000003f0002 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0001 | 01f0000000000000006f0001 | 204    |
     | 01f0000000000000003f0001 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0003 | 01f0000000000000006f0001 | 204    |
-    | 01f0000000000000003fasdf | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0001 | 01f0000000000000006f0002 | 400    |
+    | 01f0000000000000003f0001 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0002 | 01f0000000000000006f0001 | 409    |
     | 01f0000000000000003f0001 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0001 | 01f0000000000000006fasdf | 400    |
-    | 01f0000000000000003f0001 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003fasdf | 01f0000000000000006f0002 | 500    |
-    | 01f0000000000000003f0002 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0001 | 01f0000000000000006f0004 | 500    |
-    | 01f0000000000000003f0002 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0004 | 01f0000000000000006f0001 | 500    |
-    | 01f0000000000000003f0001 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0002 | 01f0000000000000006f0001 | 500    |
+    | 01f0000000000000003f0001 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003fasdf | 01f0000000000000006f0002 | 400    |
+    | 01f0000000000000003f0002 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0001 | 01f0000000000000006f0004 | 400    |
+    | 01f0000000000000003f0002 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0004 | 01f0000000000000006f0001 | 400    |
+    | 01f0000000000000003f0001 | /api/channel/:channelId/identities/:identityId  | 01f0000000000000003f0002 | 01f0000000000000006f0001 | 409    |

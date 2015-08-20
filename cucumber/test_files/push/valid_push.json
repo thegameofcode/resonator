@@ -1,0 +1,13 @@
+{
+  "identities" : ["01f0000000000000003f0002", "01f0000000000000003f0003"],
+  "content": {
+    "apn": {
+      "alert": "You have a new message",
+      "payload": {
+        "someKey": "someValue"
+      }
+    },
+    "gcm": "This is a GCM Push Notification message"
+
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "identities" : ["01f0000000000000003f0002", "01f0000000000000003f0003"],
+  "channels": [],
+  "content": {
+    "apn": {
+      "alert": "You have a new message",
+      "payload": {
+        "someKey": "someValue"
+      }
+    }
+  }
+}

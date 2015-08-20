@@ -3,12 +3,13 @@ machine:
     version: 0.12.3
 general:
   artifacts:
-    - "coverage"
+    - coverage
 test:
   pre:
     - npm run jshint
+    - npm run dredd
   override:
-    - npm test
+    - npm run test
     - npm run coverage-1
     - npm run coverage-2
     - npm run coverage-3
@@ -20,9 +21,12 @@ deployment:
     branch: master
     commands:
       - npm version 0.1.$CIRCLE_BUILD_NUM --no-git-tag-version
-      - printf "_auth=$NPM_AUTH\nemail=$NPM_USERNAME\n" > npmrc
+      - "printf \"_auth=$NPM_AUTH\\nemail=$NPM_USERNAME\\n\" > npmrc"
       - npm publish --userconfig npmrc
       - rm npmrc
 notify:
- webhooks:
-   - url: https://igz006.herokuapp.com/api/activity/circleci
+  webhooks:
+    - url: 'https://igz006.herokuapp.com/api/activity/circleci'
+dependencies:
+  pre:
+    - npm install -g dredd

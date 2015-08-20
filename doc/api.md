@@ -1,11 +1,13 @@
 FORMAT: 1A
 HOST: http://notifications-host
 
-# Description
+# Resonator microservice API
 
-Notifications is a microservice that allows to send email, sms & push notifications easily
+## Introduction
 
-# Notifications API
+Notifications is a microservice that allows to send email, sms & push notifications easily.
+
+Source code is available [here](https://github.com/thegameofcode/resonator).
 
 !include(doc/api/identity.md)
 !include(doc/api/channel.md)

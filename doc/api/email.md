@@ -10,7 +10,7 @@ Send a new email to a given array of emails
 #### Attributes for the json body parameter
 
 Name | Type | Required | Description
---- | --- | --- | --- 
+--- | --- | --- | ---
 __to__ | String | Required | Array which contains identity ids to send the message.
 __from__ | String | Required | Email sender.
 __message__ | String | Required | Email Text Message to be sent.
@@ -20,17 +20,16 @@ __message__ | String | Required | Email Text Message to be sent.
     + Body
 
             {
-              "to": ["01f0000000000000003f0002"],
-              "from": "noreply@email.com",
-              "message": "This is the body of the email"
+              "identities": ["01f0000000000000003f0001", "01f0000000000000003f0002", "01f0000000000000003f0003"],
+              "channels": ["buddies"],
+              "content": {
+                "from": "noreply@email.com",
+                "message": "This is the body of the email"
+              }
             }
 
-+ Response 201 (application/json; charset=utf-8)
++ Response 204
 
-            {
-              "id": "<20150729090542.29416.27304@sandboxd41385ca8b5f40eda0c863e41dc6e997.mailgun.org>",
-              "message": "Queued. Thank you."
-            }
 
 + Response 400 (application/json; charset=utf-8)
 
@@ -38,7 +37,7 @@ __message__ | String | Required | Email Text Message to be sent.
               "code": "BadRequestError",
               "message": "Missing 'to' property in parameters"
             }
-            
+
 + Response 400 (application/json; charset=utf-8)
 
             {
@@ -52,4 +51,4 @@ __message__ | String | Required | Email Text Message to be sent.
               "code": "BadRequestError",
               "message": "Missing 'message' property in parameters"
             }
-            
+

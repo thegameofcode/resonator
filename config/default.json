@@ -21,36 +21,52 @@
       {
         "method": "POST",
         "endpoint": "/api/identity"
+      },
+      {
+        "endpoint": "/api/notification.*"
+      },
+      {
+        "endpoint": "/api/channel/.*"
+      },
+      {
+        "method": "POST",
+        "endpoint": "/api/channel"
       }
     ]
   },
   "uniqueness": {
     "devices": ["sms", "email", "apn", "gcm", "phone"]
   },
-  "test": {
-    "fixtures_folder": "/fixtures/",
-    "resources_folder": "/cucumber/test_files/"
-  },
-  "googleApiKey" : "<GOOGLE_API_KEY>",
-  "apn" : {
-    "pfx" : "<CERTIFICATE>",
-    "passphrase" : "<PASSPHRASE>",
-    "production" : false,
-    "notificationExpiry" : 3600,
-    "feedbackInterval" : 3600
-  },
-  "mailer": {
+  "transport": {
+    "gcm": {
+      "googleApiKey" : "<GOOGLE_API_KEY>",
+      "batch_limit": 500
+    },
+    "apn": {
+      "pfx" : "<CERTIFICATE>",
+      "passphrase" : "<PASSPHRASE>",
+      "production" : false,
+      "notificationExpiry" : 3600,
+      "feedbackInterval" : 3600,
+      "batch_limit": 500
+    },
+    "twilio": {
+      "base_url": "https://api.twilio.com/",
+      "account_sid": "<TWILIO_ACCOUNT_SID_HERE>",
+      "auth_token": "<TWILIO_AUTH_TOKEN_HERE>",
+      "max_sms_length": 1600,
+      "batch_limit": 200
+    },
     "mailgun": {
       "apiKey": "",
       "domain": "",
-      "batch_limit": 1000,
-      "custom_batch_limit": 10
+      "batch_limit": 10
     }
   },
-  "twilio": {
-    "base_url": "https://api.twilio.com/",
-    "account_sid": "<TWILIO_ACCOUNT_SID_HERE>",
-    "auth_token": "<TWILIO_AUTH_TOKEN_HERE>",
-    "max_sms_length": 1600
+  "platform_batch_limits": {
+    "twilio": 1600,
+    "mailgun": 1000,
+    "gcm": 1000,
+    "apn": 1000
   }
 }
