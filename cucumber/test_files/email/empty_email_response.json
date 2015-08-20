@@ -1,7 +1,3 @@
 {
-  "status": 400,
-  "data": {
-    "code": "BadRequestError",
-    "message": "Missing email parameters"
-  }
+  "status": 400
 }

@@ -32,10 +32,9 @@ describe('Email middleware', function() {
     done();
   });
 
-  it('returns a BadRequestError for a missing email object', function(done) {
+  it('returns a BadRequestError for a missing email content object', function(done) {
 
-    emailObj = {};
-
+    delete emailObj.content;
     request.body = emailObj;
 
     var res = {};
@@ -50,29 +49,9 @@ describe('Email middleware', function() {
     checkEmail()(request, res, next);
   });
 
-  it('returns a BadRequestError for empty \'identities\' and \'channels\' fields', function(done) {
-
-    delete emailObj.channels;
-    delete emailObj.identities;
-
-    request.body = emailObj;
-
-    var res = {};
-
-    var next = function(error) {
-      expect(error.statusCode).to.equal(400);
-      expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('The request body must contain at least one target channel or identity');
-      done();
-    };
-
-    checkEmail()(request, res, next);
-  });
-
   it('returns a BadRequestError for a missing \'from\' field', function(done) {
 
     delete emailObj.content.from;
-
     request.body = emailObj;
 
     var res = {};
@@ -90,7 +69,6 @@ describe('Email middleware', function() {
   it('returns a BadRequestError for a missing \'message\' field', function(done) {
 
     delete emailObj.content.message;
-
     request.body = emailObj;
 
     var res = {};
@@ -108,7 +86,6 @@ describe('Email middleware', function() {
   it('passes validations for a missing \'subject\' field', function(done) {
 
     delete emailObj.content.subject;
-
     request.body = emailObj;
 
     var res = {};
