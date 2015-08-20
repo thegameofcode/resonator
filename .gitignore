@@ -3,8 +3,6 @@ config/external_services.json.sample
 # Logs
 logs
 *.log
-.jscsrc
-.jshintrc
 # Runtime data
 pids
 *.pid

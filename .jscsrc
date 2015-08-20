@@ -1,0 +1,6 @@
+{
+  "preset": "airbnb",
+  "requireMultipleVarDecl": null,
+  "disallowMultipleVarDecl": null,
+  "requirePaddingNewLinesAfterBlocks": null
+}
