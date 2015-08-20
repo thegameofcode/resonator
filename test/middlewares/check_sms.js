@@ -33,43 +33,6 @@ describe('SMS middleware', function() {
     done();
   });
 
-  it('returns a BadRequestError for an empty SMS object', function(done) {
-
-    smsObj = {};
-
-    request.body = smsObj;
-
-    var res = {};
-
-    var next = function(error) {
-      expect(error.statusCode).to.equal(400);
-      expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing SMS parameters');
-      done();
-    };
-
-    checkSms()(request, res, next);
-  });
-
-  it('returns a BadRequestError for missing \'identities\' and \'channels\' fields', function(done) {
-
-    delete smsObj.identities;
-    delete smsObj.channels;
-
-    request.body = smsObj;
-
-    var res = {};
-
-    var next = function(error) {
-      expect(error.statusCode).to.equal(400);
-      expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('The request body must contain at least one target channel or identity');
-      done();
-    };
-
-    checkSms()(request, res, next);
-  });
-
   it('returns a BadRequestError for a missing \'from\' field', function(done) {
 
     delete smsObj.content.from;
