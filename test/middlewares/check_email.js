@@ -59,7 +59,24 @@ describe('Email middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'message\' property in parameters');
+      expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
+      done();
+    };
+
+    checkEmail()(request, res, next);
+  });
+
+  it('returns a BadRequestError for a non-String \'message\' field', function(done) {
+
+    emailObj.content.message = [emailObj.content.message];
+    request.body = emailObj;
+
+    var res = {};
+
+    var next = function(error) {
+      expect(error.statusCode).to.equal(400);
+      expect(error.body.code).to.equal('BadRequestError');
+      expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
       done();
     };
 

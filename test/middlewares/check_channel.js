@@ -70,9 +70,33 @@ describe('Channel middleware', function() {
       request.method = endpoint.method;
 
       var next = function(error) {
-        expect(error.statusCode).to.equal(409);
-        expect(error.body.code).to.equal('ConflictError');
-        expect(error.body.message).to.equal('Missing \'name\' property in channel object');
+        expect(error.statusCode).to.equal(400);
+        expect(error.body.code).to.equal('BadRequestError');
+        expect(error.body.message).to.equal('Missing \'name\' String property in channel object');
+      };
+
+      checkChannel()(request, res, next);
+    });
+
+    done();
+  });
+
+  it('returns a BadRequestError for a non-String \'name\' field', function(done) {
+
+    channelObj.name = [channelObj.name];
+    request.body = channelObj;
+
+    _.forEach(channelEndpoints, function(endpoint) {
+
+      var res = {};
+
+      request.url = endpoint.url;
+      request.method = endpoint.method;
+
+      var next = function(error) {
+        expect(error.statusCode).to.equal(400);
+        expect(error.body.code).to.equal('BadRequestError');
+        expect(error.body.message).to.equal('Missing \'name\' String property in channel object');
       };
 
       checkChannel()(request, res, next);

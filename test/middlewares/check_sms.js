@@ -62,7 +62,24 @@ describe('SMS middleware', function() {
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'message\' property in parameters');
+      expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
+      done();
+    };
+
+    checkSms()(request, res, next);
+  });
+
+  it('returns a BadRequestError for a non-String \'message\' field', function(done) {
+
+    smsObj.content.message = [smsObj.content.message];
+    request.body = smsObj;
+
+    var res = {};
+
+    var next = function(error) {
+      expect(error.statusCode).to.equal(400);
+      expect(error.body.code).to.equal('BadRequestError');
+      expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
       done();
     };
 
