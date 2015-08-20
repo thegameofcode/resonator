@@ -1,6 +1,8 @@
 var config = require('config');
 var mongoose = require('mongoose');
 
+require('../scripts/mock-all-transports');
+
 var log = require('../lib/util/logger');
 var service = require('../lib/service');
 
@@ -9,10 +11,7 @@ var options = {
 };
 
 /* MongoDB */
-env = process.env.NODE_ENV || 'development';
-if (env === 'development') {
-  mongoose.set('debug', true);
-}
+mongoose.set('debug', true);
 
 log.info('Connecting to MongoDB...');
 mongoose.connect(config.get('db.conn'), function(err) {
@@ -26,5 +25,6 @@ mongoose.connect(config.get('db.conn'), function(err) {
   /* Server */
   service.listen(options.port, function () {
     log.info("service is listening on port", options.port);
+    log.warn('SERVICE STARTED WITH ALL TRANSPORTS MOCKED');
   });
 });

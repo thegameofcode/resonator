@@ -20,22 +20,21 @@ __optionals__ | String | Optional | Object containing all send options (onlyGcm 
     + Body
 
             {
-              "to": ["01f0000000000000003f0002", "01f0000000000000003f0003"],
-              "message": "This is the Apn notification"
-              "options": {
-                "onlyApn": true,
-                "onlyGcm": false
-              }
+                "identities": [
+                    "01f0000000000000003f0002",
+                    "01f0000000000000003f0003"
+                ],
+                "content": {
+                    "apn": {
+                        "alert": "You have a new message",
+                        "payload": {
+                            "someKey": "someValue"
+                        }
+                    }
+                }
             }
 
-+ Response 200 (application/json; charset=utf-8)
-
-            {
-                "GCM":[],
-                "APN":
-                [ "<0123 4567 89AB CDEF>",
-                  "<0123 4567 89AB CDFF>" ]
-            }
++ Response 204
 
 + Response 400 (application/json; charset=utf-8)
 

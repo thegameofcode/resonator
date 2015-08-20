@@ -21,6 +21,16 @@
       {
         "method": "POST",
         "endpoint": "/api/identity"
+      },
+      {
+        "endpoint": "/api/notification.*"
+      },
+      {
+        "endpoint": "/api/channel/.*"
+      },
+      {
+        "method": "POST",
+        "endpoint": "/api/channel"
       }
     ]
   },

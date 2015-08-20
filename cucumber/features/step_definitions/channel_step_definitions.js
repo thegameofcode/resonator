@@ -13,9 +13,7 @@ module.exports = function() {
     var url = endpoint.replace(':channelId', channelId);
     this.register('url', url);
 
-    var request = this.buildRequest('PUT', url, {
-      'x-user-id': this.get('identity')
-    }, body);
+    var request = this.buildRequest('PUT', url, {}, body);
     this.register('request', request);
 
     return callback();
@@ -52,9 +50,7 @@ module.exports = function() {
     var url = endpoint.replace(':channelId', channelId);
     this.register('url', url);
 
-    var request = this.buildRequest('GET', url, {
-      'x-user-id': this.get('identity')
-    });
+    var request = this.buildRequest('GET', url, {});
     this.register('request', request);
 
     return callback();
@@ -65,9 +61,7 @@ module.exports = function() {
     var url = endpoint.replace(':channelId', channelId);
     this.register('url', url);
 
-    var request = this.buildRequest('DELETE', url, {
-      'x-user-id': this.get('identity')
-    });
+    var request = this.buildRequest('DELETE', url, {});
     this.register('request', request);
 
     return callback();
@@ -78,9 +72,7 @@ module.exports = function() {
     var url = endpoint.replace(':channelId', channelId).replace(':identityId', identityId);
     this.register('url', url);
 
-    var request = this.buildRequest('DELETE', url, {
-      'x-user-id': this.get('identity')
-    });
+    var request = this.buildRequest('DELETE', url, {});
     this.register('request', request);
 
     return callback();

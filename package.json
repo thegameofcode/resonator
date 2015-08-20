@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./bin/server.js",
+    "start-mock": "node ./bin/mocked-server.js",
     "fixtures": "node scripts/load_fixtures",
     "test": "npm run test-cucumber && npm run test-mocha",
     "test-cucumber": "NODE_ENV=test npm run fixtures && NODE_ENV=test cucumber-js cucumber/features/ --tags ~@ignore -r cucumber/features/support -r cucumber/features/",
     "test-mocha": "NODE_ENV=test npm run fixtures && NODE_ENV=test ./node_modules/.bin/mocha --reporter nyan",
     "api": "node_modules/.bin/file-composer -i doc/api.md -o apiary.apib",
+    "dredd": "npm run api && dredd --reporter nyan",
     "api-git": "git add apiary.apib",
     "jshint": "node_modules/.bin/jshint ./lib ./cucumber/features ./test/",
     "coverage": "NODE_ENV=test npm run fixtures && NODE_ENV=test node_modules/.bin/istanbul cover -x 'scripts/*' ./node_modules/.bin/cucumber.js -- cucumber/features/ -f pretty --tags ~@ignore && NODE_ENV=test npm run test-mocha",
@@ -64,6 +66,7 @@
     "mocha-lcov-reporter": "0.0.2",
     "nock": "^2.9.1",
     "pre-commit": "^1.0.10",
+    "proxyquire": "^1.7.0",
     "sinon": "^1.15.4",
     "supertest": "^0.15.0"
   },

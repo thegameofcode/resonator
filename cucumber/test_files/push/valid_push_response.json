@@ -1,16 +1,3 @@
 {
-  "status": 200,
-  "data": {
-    "output": "Queued notifications"
-  },
-  "gcmMockResponse": {
-    "multicast_id": 108,
-    "success": 2,
-    "failure": 0,
-    "canonical_ids": 0,
-    "results": [
-      { "message_id": "1:08" },
-      { "message_id": "1:09" }
-    ]
-  }
+  "status": 204
 }

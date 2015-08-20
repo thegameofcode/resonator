@@ -12,7 +12,7 @@ Retrieves the Identity data associated to the requester
 
     + Headers
 
-            Authorization: Bearer BEWkwDA0bTTw_4dSPNI8lDPWF
+            x-user-id: 01f0000000000000003f0001
 
 
 + Response 200 (application/json; charset=utf-8)
@@ -21,17 +21,20 @@ Retrieves the Identity data associated to the requester
 
             {
                 "id": "01f0000000000000003f0001",
-                "channels": [],
+                "channels": [
+                    "buddies",
+                    "friends"
+                ],
                 "devices": {
                     "email": [
                         "john@doe.com"
                     ],
                     "sms": [
-                        "+9988776655"
+                        "+15005550011"
                     ],
                     "phone": [
-                        "+111222333",
-                        "+333222111"
+                        "111222333",
+                        "333222111"
                     ],
                     "apn": [],
                     "gcm": [
@@ -39,6 +42,7 @@ Retrieves the Identity data associated to the requester
                     ]
                 }
             }
+
 
 + Response 401 (application/json; charset=utf-8)
 
@@ -94,7 +98,7 @@ Replaces the data of the Identity object associated to the requester with the pr
 
     + Headers
 
-            Authorization: Bearer BEWkwDA0bTTw_4dSPNI8lDPWF
+            x-user-id: 01f0000000000000003f0001
 
     + Body
 
@@ -112,7 +116,7 @@ Replaces the data of the Identity object associated to the requester with the pr
 ### Retrieve the Identity data associated to an Identity identifier [GET]
 
 + Parameters
-    + id (required, string, `12345`)
+    + id (required, string, `01f0000000000000003f0002`)
 
         The ID of the desired Identity object
 
@@ -121,31 +125,35 @@ Replaces the data of the Identity object associated to the requester with the pr
 
     + Headers
 
-            Authorization: Bearer BEWkwDA0bTTw_4dSPNI8lDPWF
+            x-user-id: 01f0000000000000003f0001
 
 + Response 200 (application/json; charset=utf-8)
 
     + Body
 
             {
-                "id": "01f0000000000000003f0001",
-                "channels": [],
-                "devices": {
-                    "email": [
-                        "john@doe.com"
-                        ],
-                    "sms": [
-                        "+9988776655"
-                        ],
-                        "phone": [
-                            "+111222333",
-                            "+333222111"
-                        ],
-                    "apn": [],
-                    "gcm": [
-                        "654C4DB3-3F68-4969-8ED2-80EA16B46EB0"
-                    ]
-                }
+               "id": "01f0000000000000003f0002",
+               "channels": [
+                   "friends"
+               ],
+               "devices": {
+                   "email": [
+                       "michael@hamming.com"
+                   ],
+                   "sms": [
+                       "+15005550014"
+                   ],
+                   "phone": [
+                       "000222444",
+                       "888666222"
+                   ],
+                   "apn": [
+                       "<0123 4567 89AB CDEF>"
+                   ],
+                   "gcm": [
+                       "654C4DB3-3F68-4969-8ED2-40FF45A33DC1"
+                   ]
+               }
             }
 
 + Response 401 (application/json; charset=utf-8)

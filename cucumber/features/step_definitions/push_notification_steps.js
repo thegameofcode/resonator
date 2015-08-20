@@ -1,8 +1,3 @@
-var assert = require('assert');
-var nock = require('nock');
-
-nock.disableNetConnect();
-
 module.exports = function() {
 
     this.World = require('../support/world').World;
@@ -20,13 +15,6 @@ module.exports = function() {
         request
           .send(pushNotificationObj)
           .expect(res.status)
-          .end(function(err, response) {
-
-            if (err) {
-              return callback(err);
-            }
-            assert.deepEqual(response.body, res.data, 'Responses do not match');
-            return callback();
-          });
+          .end(callback);
     });
 };

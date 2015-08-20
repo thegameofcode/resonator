@@ -7,7 +7,7 @@ general:
 test:
   pre:
     - npm run jshint
-    - dredd
+    - npm run dredd
   override:
     - npm run test
     - npm run coverage-1

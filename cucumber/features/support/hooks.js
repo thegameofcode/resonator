@@ -10,9 +10,9 @@ var loadFixtures = require('../../../scripts/load_fixtures');
 
 module.exports = function(){
 
-	var service = require(process.cwd() + '/lib/service.js');
-  var apnUtil = require('./../../../lib/util/apn');
-  var gcmUtil = require('./../../../lib/util/gcm');
+	var service = require(process.cwd() + '/lib/service');
+  var apnUtil = require('./../../../lib/transport/apn');
+  var gcmUtil = require('./../../../lib/transport/gcm');
   var apnStub, gcmStub;
 
   this.World = require('./world.js').World;

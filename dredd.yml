@@ -1,8 +1,8 @@
 dry-run: null
-hookfiles: null
+hookfiles: 'scripts/dredd-hookfile.js'
 language: nodejs
 sandbox: false
-server: npm start
+server: npm run start-mock
 server-wait: 3
 init: false
 custom: {}

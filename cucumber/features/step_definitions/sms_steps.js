@@ -1,4 +1,3 @@
-var assert = require('assert');
 var config = require('config');
 var nock = require('nock');
 
@@ -33,15 +32,6 @@ module.exports = function() {
     request
       .send(smsObj)
       .expect(res.status)
-      .end(function(err, response) {
-
-        if (err) {
-          return callback(err);
-        }
-
-        assert.deepEqual(response.body, res.data, 'Responses do not match');
-
-        return callback();
-      });
+      .end(callback);
   });
 };
