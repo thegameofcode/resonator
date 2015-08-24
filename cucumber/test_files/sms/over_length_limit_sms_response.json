@@ -1,7 +1,3 @@
 {
-  "status": 400,
-  "data": {
-    "code": "BadRequestError",
-    "message": "Message cannot be longer than 1600 characters"
-  }
+  "status": 400
 }
