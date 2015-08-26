@@ -1,6 +1,7 @@
 require('./../global_conf');
 
 var expect = require('chai').expect;
+var mockRequestResponse = require('mock-express-response');
 
 var checkIdentity = require('./../../lib/middleware/validate_identity');
 
@@ -22,7 +23,7 @@ describe('Identity middleware', function() {
   it('returns an UnauthorizedError for no x-user-id header', function(done) {
 
     request.headers = {};
-    var res = {};
+    var res = new mockRequestResponse();
 
     var next = function(error) {
       expect(error.statusCode).to.equal(401);
@@ -37,7 +38,7 @@ describe('Identity middleware', function() {
   it('returns an InvalidHeader error for a badly formatted x-user-id header', function(done) {
 
     request.headers['x-user-id'] = 'asdf1111ccccblah';
-    var res = {};
+    var res = new mockRequestResponse();
 
     var next = function(error) {
       expect(error.statusCode).to.equal(400);
@@ -52,7 +53,7 @@ describe('Identity middleware', function() {
   it('returns an UnauthorizedError error for a non-existing Identity object', function(done) {
 
     request.headers['x-user-id'] = '01f0000123400000003f0043';
-    var res = {};
+    var res = new mockRequestResponse();
 
     var next = function(error) {
       expect(error.statusCode).to.equal(401);
@@ -67,7 +68,7 @@ describe('Identity middleware', function() {
   it('passes validations for a well-formatted x-user-id header', function(done) {
 
     request.headers['x-user-id'] = '01f0000000000000003f0001';
-    var res = {};
+    var res = new mockRequestResponse();
 
     var next = function(error) {
       var requestIdentityId = request.identity._id;
