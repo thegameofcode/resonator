@@ -9,7 +9,7 @@ Examples:
   | identity_id              | endpoint                | channel_id                | status | content                        |
   | 01f0000000000000003f0001 | /api/channel/:channelId | 01f0000000000000006f0001  |  204   | channel/valid_channel_name_one |
   | 01f0000000000000003f0002 | /api/channel/:channelId | 01f0000000000000006f0003  |  204   | channel/valid_channel_name_two |
-  | 01f0000000000000003f0002 | /api/channel/:channelId | 01f0000000000000006f0004  |  400   | channel/valid_channel_name_two |
+  | 01f0000000000000003f0002 | /api/channel/:channelId | 01f0000000000000006f0004  |  404   | channel/valid_channel_name_two |
 
   Scenario Outline: check the update attempt of a Channel object based on the request body contents
     Given an authenticated identity in the app with <identity_id>
