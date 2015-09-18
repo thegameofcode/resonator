@@ -1,0 +1,32 @@
+{
+  "valid": {
+    "devices": {
+      "sms": ["+44455566677"],
+      "email": ["john@mocha.com"],
+      "phone": ["555555555"],
+      "apn": [],
+      "gcm": ["789C4DB3-44FF-1100-AEFF-60A488E55AD1"]
+    },
+    "channels": ["buddies"]
+  },
+  "invalid_channel": {
+    "devices": {
+      "sms": ["+44455566677"],
+      "email": ["john@mocha.com"],
+      "phone": ["555555555"],
+      "apn": [],
+      "gcm": ["789C4DB3-44FF-1100-AEFF-60A488E55AD1"]
+    },
+    "channels": ["invalid"]
+  },
+  "duplicated": {
+    "devices": {
+      "sms": ["+15005550011"],
+      "email": ["john@doe.com"],
+      "phone": ["111222333", "333222111"],
+      "apn": [],
+      "gcm": ["654C4DB3-3F68-4969-8ED2-80EA16B46EB0"]
+    },
+    "channels": ["buddies", "friends"]
+  }
+}
