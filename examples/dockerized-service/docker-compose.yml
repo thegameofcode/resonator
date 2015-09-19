@@ -1,0 +1,19 @@
+resonator:
+  image: guumaster/resonator
+  ports:
+    - "3000:3000"
+  links:
+    - mongodb
+  volumes:
+    - ./production.json:/app/config/production.json
+    - /tmp:/tmp
+  environment:
+    - NODE_ENV=development
+
+mongodb:
+  image: mongo:2.6
+  ports:
+    - "27017:27017"
+  command: mongod --smallfiles
+  volumes:
+    - /tmp/mongodb:/data/db

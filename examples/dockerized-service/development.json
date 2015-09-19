@@ -1,0 +1,31 @@
+{
+  "db": {
+    "conn": "mongodb://mongodb:27017/resonator-backend"
+  },
+  "transport": {
+    "gcm": {
+      "googleApiKey" : "<GOOGLE_API_KEY>",
+      "batch_limit": 500
+    },
+    "apn": {
+      "pfx" : "<CERTIFICATE>",
+      "passphrase" : "<PASSPHRASE>",
+      "production" : true,
+      "notificationExpiry" : 3600,
+      "feedbackInterval" : 3600,
+      "batch_limit": 500
+    },
+    "twilio": {
+      "base_url": "https://api.twilio.com/",
+      "account_sid": "<TWILIO_ACCOUNT_SID_HERE>",
+      "auth_token": "<TWILIO_AUTH_TOKEN_HERE>",
+      "max_sms_length": 1600,
+      "batch_limit": 200
+    },
+    "mailgun": {
+      "apiKey": "<MAILGUN_APIKEY>",
+      "domain": "<MAILGUN_DOMAIN>",
+      "batch_limit": 10
+    }
+  }
+}
