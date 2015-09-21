@@ -143,7 +143,7 @@ describe('Identity platform: ', function() {
     });
   });
 
-  it('createIdentity with errors for duplcated Identity', function(done) {
+  it('createIdentity with errors for duplicated Identity', function(done) {
 
     var newIdentity = require(TEST_FILES + 'Identity.json').duplicated;
 
