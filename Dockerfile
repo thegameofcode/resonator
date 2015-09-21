@@ -1,4 +1,4 @@
-FROM nodesource/node:4.0
+FROM nodesource/node:4.1
 
 WORKDIR /app
 ADD package.json /app/package.json
