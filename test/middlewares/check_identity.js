@@ -4,6 +4,7 @@ var expect = require('chai').expect;
 var mockRequestResponse = require('mock-express-response');
 
 var checkIdentity = require('./../../lib/middleware/validate_identity');
+var loadFixtures = require('./../../scripts/load_fixtures');
 
 describe('Identity middleware', function() {
 
@@ -17,7 +18,7 @@ describe('Identity middleware', function() {
 
   beforeEach(function(done) {
     request.headers = {};
-    done();
+    loadFixtures(done);
   });
 
   it('returns an UnauthorizedError for no x-user-id header', function(done) {
