@@ -103,9 +103,18 @@ fixtureFiles.forEach(function(file) {
 var runLoadFixtures = module.exports = function(callback) {
   async.series([
     function drop(done) {
-      log.info('Dropping database...');
-      mongoose.connection.db.dropDatabase();
-      return done();
+      log.info('Removing collections...'); // This is done to maintain the indexes while cleaning the database objects
+      var collections = _.keys(mongoose.connection.collections);
+      async.forEach(collections, function(collectionName, microDone) {
+        var collection = mongoose.connection.collections[collectionName];
+        collection.remove(function(err) {
+          if (err && err.message !== 'ns not found') {
+            return microDone(err);
+          }
+
+          return microDone();
+        });
+      }, done);
     },
 
     function loadFixtures(done) {

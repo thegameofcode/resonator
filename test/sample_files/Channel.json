@@ -1,0 +1,13 @@
+{
+  "valid": {
+    "name": "some_new",
+    "identityRef": ["01f0000000000000003f0001", "01f0000000000000003f0003"]
+  },
+  "duplicated": {
+    "name": "neighbors"
+  },
+  "changed": {
+    "name": "changed_name",
+    "identityRef":  ["01f0000000000000003f0002"]
+  }
+}
