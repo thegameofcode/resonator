@@ -130,7 +130,6 @@ describe('Channel platform: ', function() {
 
     channelPlatform.updateChannel(channelToUpdateId, duplicateChannel, function(error) {
       expect(error.name).to.equal('MongoError');
-      expect(error.code).to.equal(11000);
       return done();
     });
   });
@@ -200,9 +199,8 @@ describe('Channel platform: ', function() {
     var channelId = '01f0000000000000006f0001';
     var identityId = '01f0000000000000003f0001';
 
-    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error, output) {
+    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);
-      expect(output.nModified).to.equal(1);
 
       channelPlatform.get(channelId, function(error, foundChannel) {
         expect(error).to.equal(null);
@@ -217,9 +215,8 @@ describe('Channel platform: ', function() {
     var channelId = '01f0000000000000006f0020';
     var identityId = '01f0000000000000003f0001';
 
-    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error, output) {
+    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);
-      expect(output.nModified).to.equal(0);
       return done();
     });
   });
@@ -229,9 +226,8 @@ describe('Channel platform: ', function() {
     var channelId = '01f0000000000000006f0001';
     var identityId = '01f0000000000000003f0020';
 
-    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error, output) {
+    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);
-      expect(output.nModified).to.equal(0);
       return done();
     });
   });
@@ -240,9 +236,8 @@ describe('Channel platform: ', function() {
     var channelId = '01f0000000000000006f0020';
     var identityId = '01f0000000000000003f0001';
 
-    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error, output) {
+    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);
-      expect(output.nModified).to.equal(0);
       return done();
     });
   });
@@ -251,9 +246,8 @@ describe('Channel platform: ', function() {
     var channelId = '01f0000000000000006f0001';
     var identityId = '01f0000000000000003f0020';
 
-    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error, output) {
+    channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);
-      expect(output.nModified).to.equal(0);
       return done();
     });
   });

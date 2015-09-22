@@ -210,7 +210,6 @@ describe('Identity platform: ', function() {
     identityPlatform.removeValuesFromField(identityId, 'channels', channelName, function(error, output) {
       expect(error).to.equal(null);
       expect(output.n).to.equal(1);
-      expect(output.nModified).to.equal(1);
       return done();
     });
   });
@@ -223,7 +222,6 @@ describe('Identity platform: ', function() {
     identityPlatform.removeValuesFromField(identityId, 'channels', channelName, function(error, output) {
       expect(error).to.equal(null);
       expect(output.n).to.equal(0);
-      expect(output.nModified).to.equal(0);
       return done();
     });
   });
