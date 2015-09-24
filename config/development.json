@@ -23,8 +23,8 @@
       "batch_limit": 200
     },
     "mailgun": {
-      "apiKey": "key-de1bb026f4f67a0cc59363721a03a0ce",
-      "domain": "sandboxd41385ca8b5f40eda0c863e41dc6e997.mailgun.org",
+      "apiKey": "<MAILGUN_APIKEY>",
+      "domain": "<MAILGUN_DOMAIN>",
       "batch_limit": 10
     }
   }
