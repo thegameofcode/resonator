@@ -16,6 +16,7 @@ if (env === 'development') {
 
 log.info('Connecting to MongoDB...');
 mongoose.connect(config.get('db.conn'), function(err) {
+  console.log('Error', err);
   if (err) throw err;
   log.info('Connected to MongoDB');
 
