@@ -1,45 +1,59 @@
 require('./../global_conf');
 
 var expect = require('chai').expect;
-var sinon = require('sinon');
+var proxyquire = require('proxyquire');
 
 var gcmTransport = require('./../../lib/transport/gcm');
-var gcm = require('node-gcm');
 
 var loadFixtures = require('./../../scripts/load_fixtures');
-var log = require('./../../lib/util/logger');
+var gcmMock;
 
-/* Sinon stubs */
-var gcmMessageStub, gcmSenderStub;
-var TEST_FILES = './../sample_files/';
+/* Mocking */
+var gcmSend = function(message, registrationIds, number, callback) {
+  return callback(null, true);
+};
 
-describe.only('GcmTransport: ', function() {
+var gcmSendWithErrors = function(message, registrationIds, number, callback) {
+  return callback(true, null);
+};
+
+describe('GcmTransport: ', function() {
 
   beforeEach(function(done) {
-    gcmSenderStub = sinon.spy(gcm.Sender, 'send');
-    //gcmSenderStub = sinon.spy(gcm.Sender);
+    gcmMock = proxyquire('node-gcm', {});
+    gcmMock.Sender = function() { };
+    gcmMock.Message = function() {};
+    gcmMock.Message.prototype.addData = function() {};
     loadFixtures(done);
   });
 
-  afterEach(function(done) {
-    gcmSenderStub.restore();
-    return done();
-  });
-
   it('sendGCM successfully', function(done) {
+
+    gcmMock.Sender.prototype.send = gcmSend;
 
     var regIds = ['654C4DB3-3F68-4969-8ED2-80EA16B46EB0'];
     var data = { key: 'message' };
     var options = null;
 
     gcmTransport.sendGCM(regIds, data, options, function(error, result) {
-      console.log('Test: ', error, result);
-      gcmSenderStub.send.called.should.equal(true);
+      expect(error).to.equal(null);
+      expect(result).to.equal(true);
       return done();
     });
   });
 
   it('sendGCM with errors', function(done) {
-    return done();
+
+    gcmMock.Sender.prototype.send = gcmSendWithErrors;
+
+    var regIds = ['654C4DB3-3F68-4969-8ED2-80EA16B46EB0'];
+    var data = { key: 'message' };
+    var options = null;
+
+    gcmTransport.sendGCM(regIds, data, options, function(error, result) {
+      expect(error).to.equal(true);
+      expect(result).to.equal(null);
+      return done();
+    });
   });
 });
