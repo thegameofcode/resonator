@@ -5,7 +5,7 @@ resonator:
   links:
     - mongodb
   volumes:
-    - ./production.json:/app/config/production.json
+    - ./development.json:/app/config/development.json
     - /tmp:/tmp
   environment:
     - NODE_ENV=development
