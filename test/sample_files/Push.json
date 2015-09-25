@@ -1,0 +1,42 @@
+{
+  "apn_only": {
+    "identities": [
+      "01f0000000000000003f0002",
+      "01f0000000000000003f0003"
+    ],
+    "content": {
+      "apn": {
+        "alert": "You have a new message",
+        "payload": {
+          "someKey": "someValue"
+        }
+      }
+    }
+  },
+  "gcm_only": {
+    "identities" : ["01f0000000000000003f0002", "01f0000000000000003f0003"],
+    "content": {
+      "gcm": {
+        "some": "You have a new message"
+      }
+    }
+  },
+  "gcm_and_apn": {
+    "identities": [
+      "01f0000000000000003f0002",
+      "01f0000000000000003f0003"
+    ],
+    "channels": ["friends", "buddies", "neighbors"],
+    "content": {
+      "apn": {
+        "alert": "You have a new message",
+        "payload": {
+          "someKey": "someValue"
+        }
+      },
+      "gcm": {
+        "some": "You have a new message"
+      }
+    }
+  }
+}
