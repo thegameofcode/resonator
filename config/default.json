@@ -7,7 +7,8 @@
   "port": 3000,
   "log": {
     "level": "debug",
-    "path": "/tmp/resonator.log"
+    "directory": "./logs/",
+    "filename": "resonator.log"
   },
   "db": {
     "conn": "mongodb://localhost:27017/resonator-backend"
@@ -60,7 +61,9 @@
     "mailgun": {
       "apiKey": "<MAILGUN_APIKEY>",
       "domain": "<MAILGUN_DOMAIN>",
-      "batch_limit": 10
+      "batch_limit": 10,
+      "from": "echo@resonator.com",
+      "subject": "ECHO"
     }
   },
   "platform_batch_limits": {

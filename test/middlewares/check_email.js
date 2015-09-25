@@ -4,9 +4,9 @@ var expect = require('chai').expect;
 
 var checkEmail = require('./../../lib/middleware/check_email');
 
-describe('Email middleware', function() {
+describe('Batch email middleware', function() {
 
-  var emailNotificationUrl = '/api/push/email';
+  var emailNotificationUrl = '/api/notification/email';
 
   var emailObj = {};
 

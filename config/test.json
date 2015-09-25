@@ -2,6 +2,11 @@
   "db": {
     "conn": "mongodb://localhost:27017/resonator-test"
   },
+  "log": {
+    "level": "debug",
+    "directory": "./logs/",
+    "filename": "resonator-test.log"
+  },
   "mongoose": {
     "debug": false
   },
