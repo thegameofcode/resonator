@@ -14,5 +14,10 @@
       "from": "+15005550010",
       "message": "Hola holita RESONATOR"
     }
+  },
+  "single_email": {
+    "to": "mac@into.sh",
+    "html": "Echo echo echo!",
+    "subject": "Testing"
   }
 }

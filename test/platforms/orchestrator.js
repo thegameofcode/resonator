@@ -47,7 +47,7 @@ describe('Orchestrator platform: ', function() {
     return done();
   });
 
-  it('sendNotification -> email', function(done) {
+  it('sendNotification -> batch email', function(done) {
 
     var requestBody = require(TEST_FILES + 'Orchestrator').email;
 
