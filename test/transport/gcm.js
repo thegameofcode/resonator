@@ -17,7 +17,7 @@ var gcmSendWithErrors = function(message, registrationIds, number, callback) {
   return callback(true, null);
 };
 
-describe('GcmTransport: ', function() {
+describe('Gcm Transport: ', function() {
 
   beforeEach(function(done) {
     gcmMock = proxyquire('node-gcm', {});
