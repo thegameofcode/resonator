@@ -15,7 +15,7 @@ proxyquire('../lib/platforms/sms', {
 
 proxyquire('../lib/platforms/push', {
   '../transport/apn': {
-    pushNotification: function(apnDevices, alert, content, callback) {
+    pushNotification: function(apnConnection, apnDevices, alert, content, callback) {
           log.warn('Faking APN call with params: ', apnDevices, alert, content);
       callback();
     }
