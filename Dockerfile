@@ -1,9 +1,12 @@
 FROM nodesource/node:4.1
 
+RUN mkdir /app
+COPY package.json /tmp/package.json
+RUN cd /tmp && npm install
+RUN cp -a /tmp/node_modules /app
+
 WORKDIR /app
-ADD package.json /app/package.json
-ADD . /app
-RUN npm install
+COPY . /app
 
-
-CMD ["npm", "start"]
+ENTRYPOINT ["npm"]
+CMD ["start"]
