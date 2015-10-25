@@ -1,0 +1,9 @@
+resonator:
+  image: resonator:testing
+  links:
+    - mongodb:mongodb
+  command: run docker-test
+
+mongodb:
+  image: mongo:2.6
+  command: mongod --smallfiles
