@@ -1,12 +1,17 @@
 machine:
   node:
     version: 4.2.1
+  services:
+    - docker
+  environment:
+    VERSION: 0.1.$CIRCLE_BUILD_NUM
 general:
   artifacts:
     - coverage
 test:
   pre:
     - npm run lint
+    - docker build -t resonator:testing .
   override:
     - npm run test
     - npm run coverage-1
@@ -15,14 +20,24 @@ test:
     - npm run coverage-4
     - npm run coverage-5
     - npm run coverage-6
+    - cd test/dockerized-testing-environment && docker-compose up -d && docker-compose run resonator run dockertest && docker-compose stop
 deployment:
   npm:
     branch: master
     commands:
-      - npm version 0.1.$CIRCLE_BUILD_NUM --no-git-tag-version
+      - npm version $VERSION --no-git-tag-version
       - "printf \"_auth=$NPM_AUTH\\nemail=$NPM_USERNAME\\n\" > npmrc"
       - npm publish --userconfig npmrc
       - rm npmrc
+  hub:
+    branch: dockerize_tests
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker tag resonator:testing $DOCKERHUB_BASE/resonator:$VERSION
+      - docker push $DOCKERHUB_BASE/resonator:$VERSION
 notify:
   webhooks:
     - url: 'https://igz006.herokuapp.com/api/activity/circleci'
+dependencies:
+  pre:
+    - sudo pip install -U docker-compose==1.3.3
