@@ -7,7 +7,6 @@ general:
 test:
   pre:
     - npm run jshint
-    - npm run dredd
   override:
     - npm run test
     - npm run coverage-1
@@ -27,6 +26,3 @@ deployment:
 notify:
   webhooks:
     - url: 'https://igz006.herokuapp.com/api/activity/circleci'
-dependencies:
-  pre:
-    - npm install -g dredd
