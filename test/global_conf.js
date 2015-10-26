@@ -3,10 +3,10 @@
 * In this manner, the database connection can be established once BEFORE running any tests.
 * Similarly, the database connection can be closed AFTER running all the tests.
 */
-
-var config = require('config');
-var mongoose = require('mongoose');
-var async = require('async');
+'use strict';
+const config = require('config');
+const mongoose = require('mongoose');
+const async = require('async');
 
 before(function(done) {
   mongoose.connect(config.get('db.conn'), function(error) {

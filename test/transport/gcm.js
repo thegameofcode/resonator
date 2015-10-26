@@ -1,19 +1,20 @@
+'use strict';
 require('./../global_conf');
 
-var expect = require('chai').expect;
-var proxyquire = require('proxyquire');
+const expect = require('chai').expect;
+const proxyquire = require('proxyquire');
 
-var gcmTransport = require('./../../lib/transport/gcm');
+const gcmTransport = require('./../../lib/transport/gcm');
 
-var loadFixtures = require('./../../scripts/load_fixtures');
-var gcmMock;
+const loadFixtures = require('./../../scripts/load_fixtures');
+let gcmMock;
 
 /* Mocking */
-var gcmSend = function(message, registrationIds, number, callback) {
+const gcmSend = function(message, registrationIds, number, callback) {
   return callback(null, true);
 };
 
-var gcmSendWithErrors = function(message, registrationIds, number, callback) {
+const gcmSendWithErrors = function(message, registrationIds, number, callback) {
   return callback(true, null);
 };
 
@@ -31,9 +32,9 @@ describe('Gcm Transport: ', function() {
 
     gcmMock.Sender.prototype.send = gcmSend;
 
-    var regIds = ['654C4DB3-3F68-4969-8ED2-80EA16B46EB0'];
-    var data = { key: 'message' };
-    var options = null;
+    const regIds = ['654C4DB3-3F68-4969-8ED2-80EA16B46EB0'];
+    const data = { key: 'message' };
+    let options = null;
 
     gcmTransport.sendGCM(regIds, data, options, function(error, result) {
       expect(error).to.equal(null);
@@ -46,9 +47,9 @@ describe('Gcm Transport: ', function() {
 
     gcmMock.Sender.prototype.send = gcmSendWithErrors;
 
-    var regIds = ['654C4DB3-3F68-4969-8ED2-80EA16B46EB0'];
-    var data = { key: 'message' };
-    var options = null;
+    const regIds = ['654C4DB3-3F68-4969-8ED2-80EA16B46EB0'];
+    const data = { key: 'message' };
+    let options = null;
 
     gcmTransport.sendGCM(regIds, data, options, function(error, result) {
       expect(error).to.equal(true);

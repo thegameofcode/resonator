@@ -1,21 +1,19 @@
-var _ = require('lodash');
-
+'use strict';
 require('./../global_conf');
-
-var expect = require('chai').expect;
-
-var checkChannel = require('./../../lib/middleware/check_channel');
+const _ = require('lodash');
+const expect = require('chai').expect;
+const checkChannel = require('./../../lib/middleware/check_channel');
 
 describe('Channel middleware', function() {
 
-  var channelEndpoints = [
+  const channelEndpoints = [
     {url: '/api/channel', method: 'POST'},
     {url: '/api/channel/01f0000000000000006f0002', method: 'PUT'}
   ];
 
-  var channelObj = {};
+  let channelObj = {};
 
-  var request = {
+  let request = {
     url: '',
     method: '',
     json: true,
@@ -25,7 +23,7 @@ describe('Channel middleware', function() {
   beforeEach(function(done) {
     request.headers['x-user-id'] = '01f0000000000000003f0002';
     channelObj = {
-     name: "sample"
+      name: 'sample'
     };
     done();
   });
@@ -38,12 +36,12 @@ describe('Channel middleware', function() {
 
     _.forEach(channelEndpoints, function(endpoint) {
 
-      var res = {};
+      let res = {};
 
       request.url = endpoint.url;
       request.method = endpoint.method;
 
-      var next = function(error) {
+      let next = function(error) {
         expect(error.statusCode).to.equal(400);
         expect(error.body.code).to.equal('BadRequestError');
         expect(error.body.message).to.equal('Missing channel object');
@@ -58,18 +56,18 @@ describe('Channel middleware', function() {
   it('returns a ConflictError for a missing \'name\' property in the Channel object', function(done) {
 
     delete channelObj.name;
-    channelObj.not_required_field = "meaningless";
+    channelObj.not_required_field = 'meaningless';
 
     request.body = channelObj;
 
     _.forEach(channelEndpoints, function(endpoint) {
 
-      var res = {};
+      let res = {};
 
       request.url = endpoint.url;
       request.method = endpoint.method;
 
-      var next = function(error) {
+      let next = function(error) {
         expect(error.statusCode).to.equal(400);
         expect(error.body.code).to.equal('BadRequestError');
         expect(error.body.message).to.equal('Missing \'name\' String property in channel object');
@@ -88,12 +86,12 @@ describe('Channel middleware', function() {
 
     _.forEach(channelEndpoints, function(endpoint) {
 
-      var res = {};
+      let res = {};
 
       request.url = endpoint.url;
       request.method = endpoint.method;
 
-      var next = function(error) {
+      let next = function(error) {
         expect(error.statusCode).to.equal(400);
         expect(error.body.code).to.equal('BadRequestError');
         expect(error.body.message).to.equal('Missing \'name\' String property in channel object');
@@ -112,12 +110,12 @@ describe('Channel middleware', function() {
 
     _.forEach(channelEndpoints, function(endpoint) {
 
-      var res = {};
+      let res = {};
 
       request.url = endpoint.url;
       request.method = endpoint.method;
 
-      var next = function(error) {
+      let next = function(error) {
         expect(error).to.equal(undefined);
       };
 

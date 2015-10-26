@@ -1,24 +1,23 @@
 'use strict';
+const mongoose = require('mongoose');
+const config = require('config');
+const async = require('async');
+const sinon = require('sinon');
 
-var mongoose = require('mongoose');
-var config = require('config');
-var async = require('async');
-var sinon = require('sinon');
+const log = require('../../../lib/util/logger');
+const loadFixtures = require('../../../scripts/load_fixtures');
 
-var log = require('../../../lib/util/logger');
-var loadFixtures = require('../../../scripts/load_fixtures');
+module.exports = function() {
 
-module.exports = function(){
-
-	var service = require(process.cwd() + '/lib/service');
-  var apnUtil = require('./../../../lib/transport/apn');
-  var gcmUtil = require('./../../../lib/transport/gcm');
-  var apnStub, gcmStub;
+  const service = require(process.cwd() + '/lib/service');
+  let apnUtil = require('./../../../lib/transport/apn');
+  let gcmUtil = require('./../../../lib/transport/gcm');
+  let apnStub, gcmStub;
 
   this.World = require('./world.js').World;
   this.World.registerServer(service);
 
-  /// BEFORE HOOKS
+  // BEFORE HOOKS
   this.BeforeFeatures(function(event, callback) {
     log.debug('Connecting to DB');
     mongoose.connect(config.get('db.conn'), callback);
@@ -30,7 +29,7 @@ module.exports = function(){
     loadFixtures(callback);
 
   });
-  /// AFTER HOOKS
+  // AFTER HOOKS
   this.AfterFeatures(function(event, callback) {
 
     async.series([

@@ -1,26 +1,27 @@
+'use strict';
 require('./../global_conf');
 
-var expect = require('chai').expect;
-var sinon = require('sinon');
-var proxyquire = require('proxyquire');
-var async = require('async');
+const expect = require('chai').expect;
+const sinon = require('sinon');
+const proxyquire = require('proxyquire');
+const async = require('async');
 
-var Singleton = require('./../singleton');
-var loadFixtures = require('./../../scripts/load_fixtures');
+let Singleton = require('./../singleton');
+const loadFixtures = require('./../../scripts/load_fixtures');
 
-var apnTransport;
-var apnConnection;
+let apnTransport;
+let apnConnection;
 
-var apnMock = {};
-var noop = function() {};
+let apnMock = {};
+const noop = function() {};
 
 // Spy objects
-var logSpy = {
+let logSpy = {
   info: '',
   error: ''
 };
 
-var pushSpy = {
+let pushSpy = {
   deleteApnDevices: ''
 };
 
@@ -77,7 +78,7 @@ describe('APN Transport: ', function() {
 
   it('connects and the apnConnection emits a CONNECTED event', function(done) {
 
-    var eventArg = 'someSocket';
+    const eventArg = 'someSocket';
 
     async.series({
       setup: function(done) {
@@ -120,8 +121,8 @@ describe('APN Transport: ', function() {
 
   it('connects and the apnConnection emits a TRANSMITTED event', function(done) {
 
-    var deviceArg = '[Some device]';
-    var notificationArg = {
+    const deviceArg = '[Some device]';
+    const notificationArg = {
       notification: 'Notification text'
     };
 
@@ -144,9 +145,9 @@ describe('APN Transport: ', function() {
   });
 
   it('connects and the apnConnection emits a TRANSMISSIONERROR event', function(done) {
-    var errorCodeArg = '400';
-    var deviceArg = '[Some device]';
-    var notificationArg = {
+    const errorCodeArg = '400';
+    const deviceArg = '[Some device]';
+    const notificationArg = {
       notification: 'Notification text'
     };
 
@@ -169,8 +170,8 @@ describe('APN Transport: ', function() {
 
   it('connects and the FeedbackService emits a ERROR event', function(done) {
 
-    var feedback = apnMock.Feedback();
-    var errorArg = 'Error';
+    let feedback = apnMock.Feedback();
+    const errorArg = 'Error';
 
     async.series({
       setup: function(done) {
@@ -192,8 +193,8 @@ describe('APN Transport: ', function() {
 
   it('connects and the FeedbackService emits a FEEDBACKERROR event', function(done) {
 
-    var feedback = apnMock.Feedback();
-    var errorArg = 'Feedback error';
+    let feedback = apnMock.Feedback();
+    const errorArg = 'Feedback error';
 
     async.series({
       setup: function(done) {
@@ -215,8 +216,8 @@ describe('APN Transport: ', function() {
 
   it('connects and the FeedbackService emits a FEEDBACK event', function(done) {
 
-    var feedback = apnMock.Feedback();
-    var feedbackData = [
+    let feedback = apnMock.Feedback();
+    const feedbackData = [
       { device: { token: '<0123 4567 89AB CDEF>'} },
       { device: { token: '<0123 4567 89AB CDFF>'} }
     ];
@@ -233,7 +234,7 @@ describe('APN Transport: ', function() {
         return done();
       }
     }, function(err) {
-      if(err) {
+      if (err) {
         return done(err);
       }
       return done();
@@ -241,7 +242,7 @@ describe('APN Transport: ', function() {
   });
 
   it('connects again and returns the existing apnConnection object', function(done) {
-    var connection = apnTransport.connect();
+    let connection = apnTransport.connect();
     expect(connection).to.deep.equal(apnConnection);
     return done();
   });
@@ -260,9 +261,9 @@ describe('APN Transport: ', function() {
       };
     };
 
-    var deviceTokens = ['<0123 4567 89AB CDEF>', '<0123 4567 89AB CDFF>'];
-    var alert = 'Some kind of alert';
-    var data = 'Notification payload';
+    const deviceTokens = ['<0123 4567 89AB CDEF>', '<0123 4567 89AB CDFF>'];
+    const alert = 'Some kind of alert';
+    const data = 'Notification payload';
 
     async.series({
       setup: function(done) {
@@ -287,19 +288,3 @@ describe('APN Transport: ', function() {
   });
 
 });
-
-  //it('startApnConnection successfully', function(done) {
-  //
-  //  var deviceTokens = ["<0123 4567 89AB CDEF>"];
-  //
-  //  var alert = 'New iOS notification alert message';
-  //  var data = {aps: 'Wolololo'};
-  //
-  //  apnTransport.pushNotification(deviceTokens, alert, data, function(error) {
-  //    expect(error).to.equal(null);
-  //    apnTransport.close();
-  //    return done();
-  //  });
-  //});
-
-

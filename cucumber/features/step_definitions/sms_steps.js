@@ -1,5 +1,6 @@
-var config = require('config');
-var nock = require('nock');
+'use strict';
+const config = require('config');
+const nock = require('nock');
 
 nock.enableNetConnect();
 
@@ -9,23 +10,22 @@ module.exports = function() {
 
   this.Then(/^a mock request is sent to (.*) to send an SMS message (.*) and returns (.*)$/, function(endpoint, sms, response, callback) {
 
-    var _this = this;
+    const _this = this;
 
-    var smsObj = _this.readJSONResource(sms);
-    var res = _this.readJSONResource(response);
+    const smsObj = _this.readJSONResource(sms);
+    const res = _this.readJSONResource(response);
 
-    var url = config.get('transport.twilio.base_url');
-    var url_point = '2010-04-01/Accounts/{TestAccountSid}/SMS/Messages'.replace('{TestAccountSid}', 'Some_random_account_sid');
+    const url = config.get('transport.twilio.base_url');
+    const urlPoint = '2010-04-01/Accounts/{TestAccountSid}/SMS/Messages'.replace('{TestAccountSid}', 'Some_random_account_sid');
 
-   nock(url)
+    nock(url)
       .filteringPath(function() {
-        return url_point;
+        return urlPoint;
       })
-      .post(url_point)
+      .post(urlPoint)
       .reply(res.status, res.data);
 
-
-    var request = this.buildRequest('POST', endpoint, {
+    let request = this.buildRequest('POST', endpoint, {
       'x-user-id': this.get('identity')
     });
 

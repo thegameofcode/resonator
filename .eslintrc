@@ -1,0 +1,14 @@
+{
+  "extends": "igz/node",
+  "rules": {
+    "id-length": [2, {"min": 2, "exceptions": ["_"]}],
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "no-var": 2,
+    "prefer-const": 0,
+    "no-shadow": 0,
+    "no-param-reassign": 0,
+    "strict": 0,
+    "new-cap": 2,
+    "func-names": 0
+  }
+}

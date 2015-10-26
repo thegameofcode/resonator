@@ -1,20 +1,21 @@
+'use strict';
 module.exports = function() {
 
-    this.World = require('../support/world').World;
+  this.World = require('../support/world').World;
 
-    this.Then(/^a request is sent to (.*) to send an apn push notification (.*) and returns (.*)$/, function(endpoint, apn, response, callback) {
-        var _this = this;
+  this.Then(/^a request is sent to (.*) to send an apn push notification (.*) and returns (.*)$/, function(endpoint, apn, response, callback) {
+    const _this = this;
 
-        var apnObj = _this.readJSONResource(apn);
-        var res = _this.readJSONResource(response);
+    const apnObj = _this.readJSONResource(apn);
+    let res = _this.readJSONResource(response);
 
-        var request = this.buildRequest('POST', endpoint, {
-            'x-user-id': this.get('identity')
-        });
-
-        request
-            .send(apnObj)
-            .expect(res.status)
-            .end(callback);
+    let request = this.buildRequest('POST', endpoint, {
+      'x-user-id': this.get('identity')
     });
+
+    request
+      .send(apnObj)
+      .expect(res.status)
+      .end(callback);
+  });
 };

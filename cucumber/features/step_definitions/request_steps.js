@@ -1,5 +1,6 @@
-var assert = require('assert');
-var _ = require('lodash');
+'use strict';
+const assert = require('assert');
+const _ = require('lodash');
 
 module.exports = function() {
 
@@ -8,7 +9,7 @@ module.exports = function() {
   this.When(/^a user makes a GET to (.*)$/, function(endpoint, callback) {
     this.register('url', endpoint);
 
-    var request = this.buildRequest('GET', endpoint, {
+    const request = this.buildRequest('GET', endpoint, {
       'x-user-id': this.get('identity')
     });
 
@@ -21,11 +22,11 @@ module.exports = function() {
 
     numItems = Number(numItems);
 
-    var response = this.get('response');
+    const response = this.get('response');
 
     assert.ok(_.isArray(response.body), 'Response object is not of type Array');
 
-    var itemsCount = response.body.length;
+    const itemsCount = response.body.length;
     assert.equal(itemsCount, numItems, 'Number of items does not match');
 
     return callback();

@@ -1,5 +1,6 @@
-var assert = require('assert');
-var _ = require('lodash');
+'use strict';
+const assert = require('assert');
+const _ = require('lodash');
 
 module.exports = function() {
 
@@ -7,13 +8,13 @@ module.exports = function() {
 
   this.When(/^a user makes a PUT to (.*) to change channel (.*) with content (.*)$/, function(endpoint, channelId, value, callback) {
 
-    var body = this.readJSONResource(value);
+    const body = this.readJSONResource(value);
     this.register('body', body);
 
-    var url = endpoint.replace(':channelId', channelId);
+    const url = endpoint.replace(':channelId', channelId);
     this.register('url', url);
 
-    var request = this.buildRequest('PUT', url, {}, body);
+    const request = this.buildRequest('PUT', url, {}, body);
     this.register('request', request);
 
     return callback();
@@ -21,7 +22,7 @@ module.exports = function() {
 
   this.Then(/^the next GET request to (.*) returns the channel (.*) with (.*) field with value (.*)$/, function(endpoint, channelId, field, fieldContents, callback) {
 
-    var request = this.buildRequest('GET', endpoint, {
+    const request = this.buildRequest('GET', endpoint, {
       'x-user-id': this.get('identity')
     });
 
@@ -34,7 +35,7 @@ module.exports = function() {
           return callback(err);
         }
 
-        var nameToCheck = _.result(_.find(response.body, function(channel) {
+        let nameToCheck = _.result(_.find(response.body, function(channel) {
           return channel.id === channelId;
         }), 'name');
 
@@ -47,10 +48,10 @@ module.exports = function() {
 
   this.When(/^a user performs a GET to (.*) for channel (.*)$/, function(endpoint, channelId, callback) {
 
-    var url = endpoint.replace(':channelId', channelId);
+    const url = endpoint.replace(':channelId', channelId);
     this.register('url', url);
 
-    var request = this.buildRequest('GET', url, {});
+    const request = this.buildRequest('GET', url, {});
     this.register('request', request);
 
     return callback();
@@ -58,10 +59,10 @@ module.exports = function() {
 
   this.When(/^a user makes a DELETE to (.*) for channel (.*)$/, function(endpoint, channelId, callback) {
 
-    var url = endpoint.replace(':channelId', channelId);
+    const url = endpoint.replace(':channelId', channelId);
     this.register('url', url);
 
-    var request = this.buildRequest('DELETE', url, {});
+    const request = this.buildRequest('DELETE', url, {});
     this.register('request', request);
 
     return callback();
@@ -69,10 +70,10 @@ module.exports = function() {
 
   this.When(/^a user performs a DELETE to (.*) to delete identity (.*) from channel (.*)$/, function(endpoint, identityId, channelId, callback) {
 
-    var url = endpoint.replace(':channelId', channelId).replace(':identityId', identityId);
+    const url = endpoint.replace(':channelId', channelId).replace(':identityId', identityId);
     this.register('url', url);
 
-    var request = this.buildRequest('DELETE', url, {});
+    const request = this.buildRequest('DELETE', url, {});
     this.register('request', request);
 
     return callback();

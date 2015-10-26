@@ -1,4 +1,5 @@
-var assert = require('assert');
+'use strict';
+const assert = require('assert');
 
 module.exports = function() {
 
@@ -12,12 +13,12 @@ module.exports = function() {
 
   this.Given(/^someone makes a POST to (.*) with content (.*)$/, function(endpoint, identityContents, callback) {
 
-    var body = this.readJSONResource(identityContents);
+    const body = this.readJSONResource(identityContents);
 
     this.register('url', endpoint);
 
-    var identity = this.get('identity') || {};
-    var request = this.buildRequest('POST', endpoint, {
+    const identity = this.get('identity') || {};
+    const request = this.buildRequest('POST', endpoint, {
       'x-user-id': identity
     }, body);
 
@@ -28,9 +29,9 @@ module.exports = function() {
   });
 
   this.Then(/^the backend responds with (\d+)$/, function(status, callback) {
-    var request = this.get('request');
-    var body = this.get('body');
-    var _this = this;
+    let request = this.get('request');
+    const body = this.get('body');
+    const _this = this;
     request
       .expect(Number(status));
 
@@ -52,7 +53,7 @@ module.exports = function() {
 
   this.Then(/^the response includes a Mongoose ObjectId identifier$/, function(callback) {
 
-    var response = this.get('response');
+    const response = this.get('response');
 
     assert.ok(response.body.id !== undefined, 'Response does not contain a Mongoose ObjectId identifier');
     return callback();

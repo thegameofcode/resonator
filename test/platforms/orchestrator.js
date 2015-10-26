@@ -1,24 +1,25 @@
+'use strict';
 require('./../global_conf');
 
-var expect = require('chai').expect;
-var sinon = require('sinon');
+const expect = require('chai').expect;
+const sinon = require('sinon');
 
-var orchestrator = require('./../../lib/platforms/orchestrator');
-var emailPlatform = require('./../../lib/platforms/email');
-var smsPlatform = require('./../../lib/platforms/sms');
-var pushPlatform = require('./../../lib/platforms/push');
+const orchestrator = require('./../../lib/platforms/orchestrator');
+const emailPlatform = require('./../../lib/platforms/email');
+const smsPlatform = require('./../../lib/platforms/sms');
+const pushPlatform = require('./../../lib/platforms/push');
 
-var mailgun = require('./../../lib/transport/mailgun');
-var twilio = require('./../../lib/transport/twilio');
-var apn = require('./../../lib/transport/apn');
-var gcm = require('./../../lib/transport/gcm');
+const mailgun = require('./../../lib/transport/mailgun');
+const twilio = require('./../../lib/transport/twilio');
+const apn = require('./../../lib/transport/apn');
+const gcm = require('./../../lib/transport/gcm');
 
-var loadFixtures = require('./../../scripts/load_fixtures');
-var log = require('./../../lib/util/logger');
+const loadFixtures = require('./../../scripts/load_fixtures');
+const log = require('./../../lib/util/logger');
 
-var TEST_FILES = './../sample_files/';
+const TEST_FILES = './../sample_files/';
 
-var mailgunStub, apnStub, gcmStub, smsStub;
+let mailgunStub, apnStub, gcmStub, smsStub;
 
 describe('Orchestrator platform: ', function() {
 
@@ -49,7 +50,7 @@ describe('Orchestrator platform: ', function() {
 
   it('sendNotification -> batch email', function(done) {
 
-    var requestBody = require(TEST_FILES + 'Orchestrator').email;
+    const requestBody = require(TEST_FILES + 'Orchestrator').email;
 
     orchestrator.sendNotification(requestBody, emailPlatform, function(error, output) {
       expect(error).to.equal(null);
@@ -61,7 +62,7 @@ describe('Orchestrator platform: ', function() {
 
   it('sendNotification -> sms', function(done) {
 
-    var requestBody = require(TEST_FILES + 'Orchestrator').sms;
+    const requestBody = require(TEST_FILES + 'Orchestrator').sms;
 
     orchestrator.sendNotification(requestBody, smsPlatform, function(error, output) {
       expect(error).to.equal(null);
@@ -73,7 +74,7 @@ describe('Orchestrator platform: ', function() {
 
   it('sendPushNotification -> APN', function(done) {
 
-    var requestBody = require(TEST_FILES + 'Push.json').apn_only;
+    const requestBody = require(TEST_FILES + 'Push.json').apn_only;
 
     orchestrator.sendPushNotifications(requestBody, pushPlatform, function(error, output) {
       expect(error).to.equal(null);
@@ -85,7 +86,7 @@ describe('Orchestrator platform: ', function() {
 
   it('sendPushNotification -> GCM', function(done) {
 
-    var requestBody = require(TEST_FILES + 'Push.json').gcm_only;
+    const requestBody = require(TEST_FILES + 'Push.json').gcm_only;
 
     orchestrator.sendPushNotifications(requestBody, pushPlatform, function(error, output) {
       expect(error).to.equal(null);
@@ -97,7 +98,7 @@ describe('Orchestrator platform: ', function() {
 
   it('sendPushNotification -> APN & GCM', function(done) {
 
-    var requestBody = require(TEST_FILES + 'Push.json').gcm_and_apn;
+    const requestBody = require(TEST_FILES + 'Push.json').gcm_and_apn;
 
     orchestrator.sendPushNotifications(requestBody, pushPlatform, function(error, output) {
       expect(error).to.equal(null);

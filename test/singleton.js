@@ -1,20 +1,21 @@
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
+'use strict';
+const EventEmitter = require('events').EventEmitter;
+const util = require('util');
 
-var Singleton = function() {
+let Singleton = function() {
   EventEmitter.call(this);
 };
 
 util.inherits(Singleton, EventEmitter);
 
-var connectionSingleton = new Singleton();
-var feedbackSingleton = new Singleton();
+let connectionSingleton = new Singleton();
+let feedbackSingleton = new Singleton();
 
-var connectionSingletonInstance = function() {
+let connectionSingletonInstance = function() {
   return connectionSingleton;
 };
 
-var feedbackSingletonInstance = function() {
+let feedbackSingletonInstance = function() {
   return feedbackSingleton;
 };
 
