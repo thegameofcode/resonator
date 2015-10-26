@@ -1,19 +1,20 @@
+'use strict';
 require('./../global_conf');
 
-var expect = require('chai').expect;
-var _ = require('lodash');
+const expect = require('chai').expect;
+const _ = require('lodash');
 
-var checkSms = require('./../../lib/middleware/check_sms');
-var config = require('config');
-var MAX_TWILIO_SMS_LENGTH = config.get('transport.twilio.max_sms_length');
+const checkSms = require('./../../lib/middleware/check_sms');
+const config = require('config');
+const MAX_TWILIO_SMS_LENGTH = config.get('transport.twilio.max_sms_length');
 
 describe('SMS middleware', function() {
 
-  var smsNotificationUrl = '/api/push/sms';
+  const smsNotificationUrl = '/api/push/sms';
 
-  var smsObj = {};
+  let smsObj = {};
 
-  var request = {
+  let request = {
     url: smsNotificationUrl,
     method: 'POST',
     json: true,
@@ -23,11 +24,11 @@ describe('SMS middleware', function() {
   beforeEach(function(done) {
     request.headers['x-user-id'] = '01f0000000000000003f0003';
     smsObj = {
-      identities: ["01f0000000000000003f0002", "01f0000000000000003f0003"],
-      channels: ["friends"],
+      identities: ['01f0000000000000003f0002', '01f0000000000000003f0003'],
+      channels: ['friends'],
       content: {
-        from: "+15005550006",
-        message: "Hello there!"
+        from: '+15005550006',
+        message: 'Hello there!'
       }
     };
     done();
@@ -39,9 +40,9 @@ describe('SMS middleware', function() {
 
     request.body = smsObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'from\' property in parameters');
@@ -57,9 +58,9 @@ describe('SMS middleware', function() {
 
     request.body = smsObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
@@ -74,9 +75,9 @@ describe('SMS middleware', function() {
     smsObj.content.message = [smsObj.content.message];
     request.body = smsObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
@@ -92,8 +93,8 @@ describe('SMS middleware', function() {
 
     request.body = smsObj;
 
-    var res = {};
-    var next = function(error) {
+    let res = {};
+    let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Message cannot be longer than ' + MAX_TWILIO_SMS_LENGTH + ' characters');
@@ -109,8 +110,8 @@ describe('SMS middleware', function() {
 
     request.body = smsObj;
 
-    var res = {};
-    var next = function(error) {
+    let res = {};
+    let next = function(error) {
       expect(error).to.equal(undefined);
       done();
     };
@@ -124,8 +125,8 @@ describe('SMS middleware', function() {
 
     request.body = smsObj;
 
-    var res = {};
-    var next = function(error) {
+    let res = {};
+    let next = function(error) {
       expect(error).to.equal(undefined);
       done();
     };

@@ -1,12 +1,12 @@
 machine:
   node:
-    version: 0.12.3
+    version: 4.2.1
 general:
   artifacts:
     - coverage
 test:
   pre:
-    - npm run jshint
+    - npm run lint
   override:
     - npm run test
     - npm run coverage-1

@@ -1,13 +1,14 @@
-var assert = require('assert');
-var identities = require('../../../lib/platforms/identity');
-var _ = require('lodash');
+'use strict';
+const assert = require('assert');
+const identities = require('../../../lib/platforms/identity');
+const _ = require('lodash');
 module.exports = function() {
 
   this.World = require('../support/world').World;
 
   this.Then(/^the returned identity object with identifier (.*) has a valid format$/, function(identityId, callback) {
 
-    var response = this.get('response').body;
+    const response = this.get('response').body;
 
     identities.get(identityId, function(err, foundIdentity) {
 
@@ -34,11 +35,11 @@ module.exports = function() {
 
   this.Then(/^a user asks for profile data to (.*) with id (.*)$/, function(endpoint, identityId, callback) {
 
-    var url = endpoint.replace(':identityId', identityId);
+    const url = endpoint.replace(':identityId', identityId);
 
     this.register('url', url);
 
-    var request = this.buildRequest('GET', url, {
+    let request = this.buildRequest('GET', url, {
       'x-user-id': this.get('identity')
     });
 
@@ -49,7 +50,7 @@ module.exports = function() {
 
   this.Then(/^the next GET request to (.*) returns the identity with (.*) field with value (.*)$/, function(endpoint, field, fieldContents, callback) {
 
-    var request = this.buildRequest('GET', endpoint, {
+    let request = this.buildRequest('GET', endpoint, {
       'x-user-id': this.get('identity')
     });
 
@@ -71,11 +72,11 @@ module.exports = function() {
 
   this.When(/^a user makes a PUT to (.*) to change his (.*) field with value (.*)$/, function(endpoint, field, value, callback) {
 
-    var body = this.readJSONResource(value);
+    const body = this.readJSONResource(value);
 
     this.register('url', endpoint);
 
-    var request = this.buildRequest('PUT', endpoint, {
+    let request = this.buildRequest('PUT', endpoint, {
       'x-user-id': this.get('identity')
     }, body);
 
@@ -89,9 +90,9 @@ module.exports = function() {
 
     numChannels = Number(numChannels);
 
-    var createdIdentityId = this.get('response').body.id;
+    const createdIdentityId = this.get('response').body.id;
 
-    var request = this.buildRequest('GET', endpoint, {
+    let request = this.buildRequest('GET', endpoint, {
       'x-user-id': createdIdentityId
     });
 
@@ -103,7 +104,7 @@ module.exports = function() {
           return callback(err);
         }
 
-        var responseChannelsNumber = response.body.channels.length;
+        let responseChannelsNumber = response.body.channels.length;
         assert.equal(responseChannelsNumber, numChannels, 'Number of channels does not match');
 
         return callback();

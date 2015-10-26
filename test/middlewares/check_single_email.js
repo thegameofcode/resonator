@@ -1,16 +1,17 @@
+'use strict';
 require('./../global_conf');
 
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 
-var checkSingleEmail = require('./../../lib/middleware/check_single_email');
+const checkSingleEmail = require('./../../lib/middleware/check_single_email');
 
 describe('Single target email middleware', function() {
 
-  var emailNotificationUrl = '/api/notification/singleEmail';
+  const emailNotificationUrl = '/api/notification/singleEmail';
 
-  var emailObj = {};
+  let emailObj = {};
 
-  var request = {
+  let request = {
     url: emailNotificationUrl,
     method: 'POST',
     json: true,
@@ -34,9 +35,9 @@ describe('Single target email middleware', function() {
     delete emailObj.html;
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'html\' String property in request body');
@@ -51,9 +52,9 @@ describe('Single target email middleware', function() {
     emailObj.html = [emailObj.html];
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'html\' String property in request body');
@@ -68,9 +69,9 @@ describe('Single target email middleware', function() {
     delete emailObj.subject;
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error).to.equal(undefined);
       done();
     };
@@ -83,9 +84,9 @@ describe('Single target email middleware', function() {
     delete emailObj.from;
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error).to.equal(undefined);
       done();
     };
@@ -97,9 +98,9 @@ describe('Single target email middleware', function() {
 
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error).to.equal(undefined);
       done();
     };

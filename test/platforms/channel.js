@@ -1,12 +1,13 @@
+'use strict';
 require('./../global_conf');
 
-var expect = require('chai').expect;
+const expect = require('chai').expect;
 
-var channelPlatform = require('./../../lib/platforms/channel');
-var loadFixtures = require('./../../scripts/load_fixtures');
-var log = require('./../../lib/util/logger');
+const channelPlatform = require('./../../lib/platforms/channel');
+const loadFixtures = require('./../../scripts/load_fixtures');
+const log = require('./../../lib/util/logger');
 
-var TEST_FILES = './../sample_files/';
+const TEST_FILES = './../sample_files/';
 
 describe('Channel platform: ', function() {
 
@@ -17,7 +18,7 @@ describe('Channel platform: ', function() {
 
   it('getChannel successfully', function(done) {
 
-    var channelId = '01f0000000000000006f0001';
+    const channelId = '01f0000000000000006f0001';
 
     channelPlatform.get(channelId, function(error, foundChannel) {
       expect(error).to.equal(null);
@@ -28,11 +29,11 @@ describe('Channel platform: ', function() {
 
   it('getChannelwith CastError', function(done) {
 
-    var channelId = 'aaaa';
+    const channelId = 'aaaa';
 
     channelPlatform.get(channelId, function(error, foundChannel) {
       expect(error.name).to.equal('CastError');
-      expect(error.message).to.equal('Cast to ObjectId failed for value "' + channelId +'" at path "_id"');
+      expect(error.message).to.equal('Cast to ObjectId failed for value "' + channelId + '" at path "_id"');
       expect(foundChannel).to.equal(undefined);
       return done();
     });
@@ -40,7 +41,7 @@ describe('Channel platform: ', function() {
 
   it('getChannel for a non-existing Channel object', function(done) {
 
-    var channelId = '01f0000000000000006f0020';
+    const channelId = '01f0000000000000006f0020';
 
     channelPlatform.get(channelId, function(error, notFoundChannel) {
       expect(error).to.equal(null);
@@ -51,7 +52,7 @@ describe('Channel platform: ', function() {
 
   it('retrieveChannelDataForIdentity successfully', function(done) {
 
-    var channelId = '01f0000000000000003f0001';
+    const channelId = '01f0000000000000003f0001';
 
     channelPlatform.retrieveChannelDataForIdentity(channelId, function(error, channelData) {
       expect(error).to.equal(null);
@@ -62,7 +63,7 @@ describe('Channel platform: ', function() {
 
   it('createChannel successfully', function(done) {
 
-    var newChannel = require(TEST_FILES + 'Channel.json').valid;
+    const newChannel = require(TEST_FILES + 'Channel.json').valid;
 
     channelPlatform.createChannel(newChannel, function(error, createdChannel) {
       expect(error).to.equal(null);
@@ -74,7 +75,7 @@ describe('Channel platform: ', function() {
 
   it('createChannel with errors', function(done) {
 
-    var channelDuplicate = require(TEST_FILES + 'Channel.json').duplicated;
+    const channelDuplicate = require(TEST_FILES + 'Channel.json').duplicated;
 
     channelPlatform.createChannel(channelDuplicate, function(error, createdChannel) {
       expect(error.statusCode).to.equal(409);
@@ -87,7 +88,7 @@ describe('Channel platform: ', function() {
 
   it('deleteChannel successfully', function(done) {
 
-    var channelToDeleteId = '01f0000000000000006f0001';
+    const channelToDeleteId = '01f0000000000000006f0001';
 
     channelPlatform.deleteChannel(channelToDeleteId, function(error) {
       expect(error).to.equal(undefined);
@@ -97,7 +98,7 @@ describe('Channel platform: ', function() {
 
   it('deleteChannel with errors', function(done) {
 
-    var channelToDeleteId = '01f0000000000000006f0020';
+    const channelToDeleteId = '01f0000000000000006f0020';
 
     channelPlatform.deleteChannel(channelToDeleteId, function(error) {
       expect(error.statusCode).to.equal(404);
@@ -109,8 +110,8 @@ describe('Channel platform: ', function() {
 
   it('updateChannel successfully', function(done) {
 
-    var channelWithChanges = require(TEST_FILES + 'Channel.json').changed;
-    var channelToUpdateId = '01f0000000000000006f0001';
+    const channelWithChanges = require(TEST_FILES + 'Channel.json').changed;
+    const channelToUpdateId = '01f0000000000000006f0001';
     channelPlatform.updateChannel(channelToUpdateId, channelWithChanges, function(error) {
       expect(error).to.equal(undefined);
 
@@ -125,8 +126,8 @@ describe('Channel platform: ', function() {
 
   it('updateChannel with errors', function(done) {
 
-    var duplicateChannel = require(TEST_FILES + 'Channel.json').duplicated;
-    var channelToUpdateId = '01f0000000000000006f0001';
+    const duplicateChannel = require(TEST_FILES + 'Channel.json').duplicated;
+    const channelToUpdateId = '01f0000000000000006f0001';
 
     channelPlatform.updateChannel(channelToUpdateId, duplicateChannel, function(error) {
       expect(error.name).to.equal('MongoError');
@@ -136,7 +137,7 @@ describe('Channel platform: ', function() {
 
   it('retrieveIdentityListForChannel successfully', function(done) {
 
-    var channelId = '01f0000000000000006f0001';
+    const channelId = '01f0000000000000006f0001';
 
     channelPlatform.retrieveIdentityListForChannel(channelId, function(error, identityList) {
       expect(error).to.equal(null);
@@ -146,7 +147,7 @@ describe('Channel platform: ', function() {
   });
 
   it('retrieveIdentityListForChannel with errors', function(done) {
-    var channelId = '01f0000000000000006f0020';
+    const channelId = '01f0000000000000006f0020';
 
     channelPlatform.retrieveIdentityListForChannel(channelId, function(error, identityList) {
       expect(error.statusCode).to.equal(400);
@@ -159,8 +160,8 @@ describe('Channel platform: ', function() {
 
   it('deleteIdentityFromChannel successfully', function(done) {
 
-    var channelToDeleteIdentityFrom = '01f0000000000000006f0001';
-    var identityToDeleteFromChannel = '01f0000000000000003f0001';
+    const channelToDeleteIdentityFrom = '01f0000000000000006f0001';
+    const identityToDeleteFromChannel = '01f0000000000000003f0001';
 
     channelPlatform.deleteIdentityFromChannel(channelToDeleteIdentityFrom, identityToDeleteFromChannel, function(error) {
       expect(error).to.equal(null);
@@ -168,10 +169,10 @@ describe('Channel platform: ', function() {
     });
   });
 
-  it ('deleteIdentityFromChannel with errors', function(done) {
+  it('deleteIdentityFromChannel with errors', function(done) {
 
-    var channelToDeleteIdentityFrom = '01f0000000000000006f0020';
-    var identityToDeleteFromChannel = '01f0000000000000003f0001';
+    const channelToDeleteIdentityFrom = '01f0000000000000006f0020';
+    const identityToDeleteFromChannel = '01f0000000000000003f0001';
 
     channelPlatform.deleteIdentityFromChannel(channelToDeleteIdentityFrom, identityToDeleteFromChannel, function(error) {
       expect(error.statusCode).to.equal(400);
@@ -181,10 +182,10 @@ describe('Channel platform: ', function() {
     });
   });
 
-  it ('deleteIdentityFromChannel with other errors', function(done) {
+  it('deleteIdentityFromChannel with other errors', function(done) {
 
-    var channelToDeleteIdentityFrom = '01f0000000000000006f0001';
-    var identityToDeleteFromChannel = '01f0000000000000003f0020';
+    const channelToDeleteIdentityFrom = '01f0000000000000006f0001';
+    const identityToDeleteFromChannel = '01f0000000000000003f0020';
 
     channelPlatform.deleteIdentityFromChannel(channelToDeleteIdentityFrom, identityToDeleteFromChannel, function(error) {
       expect(error.statusCode).to.equal(400);
@@ -196,8 +197,8 @@ describe('Channel platform: ', function() {
 
   it('removeValuesFromField successfully', function(done) {
 
-    var channelId = '01f0000000000000006f0001';
-    var identityId = '01f0000000000000003f0001';
+    const channelId = '01f0000000000000006f0001';
+    const identityId = '01f0000000000000003f0001';
 
     channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);
@@ -212,8 +213,8 @@ describe('Channel platform: ', function() {
 
   it('removeValuesFromField for non-existing Channel object', function(done) {
 
-    var channelId = '01f0000000000000006f0020';
-    var identityId = '01f0000000000000003f0001';
+    const channelId = '01f0000000000000006f0020';
+    const identityId = '01f0000000000000003f0001';
 
     channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);
@@ -223,8 +224,8 @@ describe('Channel platform: ', function() {
 
   it('removeValuesFromField for non-existing Identity object', function(done) {
 
-    var channelId = '01f0000000000000006f0001';
-    var identityId = '01f0000000000000003f0020';
+    const channelId = '01f0000000000000006f0001';
+    const identityId = '01f0000000000000003f0020';
 
     channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);
@@ -233,8 +234,8 @@ describe('Channel platform: ', function() {
   });
 
   it('removeValuesFromField for non-existing Channel object', function(done) {
-    var channelId = '01f0000000000000006f0020';
-    var identityId = '01f0000000000000003f0001';
+    const channelId = '01f0000000000000006f0020';
+    const identityId = '01f0000000000000003f0001';
 
     channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);
@@ -243,8 +244,8 @@ describe('Channel platform: ', function() {
   });
 
   it('removeValuesFromField for non-existing Identity object', function(done) {
-    var channelId = '01f0000000000000006f0001';
-    var identityId = '01f0000000000000003f0020';
+    const channelId = '01f0000000000000006f0001';
+    const identityId = '01f0000000000000003f0020';
 
     channelPlatform.removeValuesFromField(channelId, 'identityRef', identityId, function(error) {
       expect(error).to.equal(null);

@@ -1,16 +1,16 @@
+'use strict';
 require('./../global_conf');
 
-var expect = require('chai').expect;
-
-var checkEmail = require('./../../lib/middleware/check_email');
+const expect = require('chai').expect;
+const checkEmail = require('./../../lib/middleware/check_email');
 
 describe('Batch email middleware', function() {
 
-  var emailNotificationUrl = '/api/notification/email';
+  const emailNotificationUrl = '/api/notification/email';
 
-  var emailObj = {};
+  let emailObj = {};
 
-  var request = {
+  let request = {
     url: emailNotificationUrl,
     method: 'POST',
     json: true,
@@ -37,9 +37,9 @@ describe('Batch email middleware', function() {
     delete emailObj.content.from;
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'from\' property in parameters');
@@ -54,9 +54,9 @@ describe('Batch email middleware', function() {
     delete emailObj.content.message;
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
@@ -71,9 +71,9 @@ describe('Batch email middleware', function() {
     emailObj.content.message = [emailObj.content.message];
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
       expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
@@ -88,9 +88,9 @@ describe('Batch email middleware', function() {
     delete emailObj.content.subject;
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error).to.equal(undefined);
       done();
     };
@@ -102,9 +102,9 @@ describe('Batch email middleware', function() {
 
     request.body = emailObj;
 
-    var res = {};
+    let res = {};
 
-    var next = function(error) {
+    let next = function(error) {
       expect(error).to.equal(undefined);
       done();
     };

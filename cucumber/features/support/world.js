@@ -1,11 +1,12 @@
-var _ = require('lodash'),
-  qs = require('querystring'),
-  test = require('supertest');
+'use strict';
+const _ = require('lodash');
+const qs = require('querystring');
+const test = require('supertest');
 
 // or 'http://localhost:3005';
-var server;
+let server;
 
-var World = function World(callback) {
+let World = function World(callback) {
   this.globals = [];
   return callback();
 };
@@ -28,7 +29,7 @@ World.prototype.buildQuerystring = function(url, params) {
 };
 
 World.prototype.buildRequest = function(method, endpoint, headers) {
-  var request;
+  let request;
 
   method = method.toLowerCase();
   request = test(server)[method](endpoint);
