@@ -4,7 +4,9 @@ machine:
   services:
     - docker
   environment:
-    VERSION: 0.1.$CIRCLE_BUILD_NUM
+    MAJOR: 0
+    MINOR: 1
+    VERSION: $MAJOR.$MINOR.$CIRCLE_BUILD_NUM
 general:
   artifacts:
     - coverage
