@@ -24,16 +24,13 @@ test:
     - npm run coverage-6
     - cd test/dockerized-testing-environment && docker-compose up -d && docker-compose run resonator run dockertest
 deployment:
-  npm:
+  npm_dockerhub:
     branch: master
     commands:
       - npm version $VERSION --no-git-tag-version
       - "printf \"_auth=$NPM_AUTH\\nemail=$NPM_USERNAME\\n\" > npmrc"
       - npm publish --userconfig npmrc
       - rm npmrc
-  hub:
-    branch: master
-    commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker tag resonator:testing $DOCKERHUB_BASE/resonator:$VERSION
       - docker push $DOCKERHUB_BASE/resonator:$VERSION
