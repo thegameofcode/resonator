@@ -22,7 +22,7 @@ test:
     - npm run coverage-4
     - npm run coverage-5
     - npm run coverage-6
-    - cd test/dockerized-testing-environment && docker-compose up -d && docker-compose run resonator run dockertest
+    - cd test/dockerized-testing-environment && docker-compose up -d && sleep 5 && docker-compose run resonator run dockertest
 deployment:
   npm_dockerhub:
     branch: master
