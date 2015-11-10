@@ -34,6 +34,8 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker tag resonator:testing $DOCKERHUB_BASE/resonator:$VERSION
       - docker push $DOCKERHUB_BASE/resonator:$VERSION
+      - docker tag resonator:latest $DOCKERHUB_BASE/resonator:$VERSION
+      - docker push $DOCKERHUB_BASE/resonator:latest
 notify:
   webhooks:
     - url: 'https://igz006.herokuapp.com/api/activity/circleci'
