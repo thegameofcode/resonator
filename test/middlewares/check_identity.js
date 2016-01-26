@@ -9,10 +9,10 @@ const loadFixtures = require('./../../scripts/load_fixtures');
 
 describe('Identity middleware', function() {
 
-  const hearbeatUrl = '/heartbeat';
+  const fetchIdentityUrl = '/api/identity';
 
   let request = {
-    url: hearbeatUrl,
+    url: fetchIdentityUrl,
     method: 'GET',
     headers: {}
   };

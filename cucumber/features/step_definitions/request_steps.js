@@ -9,9 +9,9 @@ module.exports = function() {
   this.When(/^a user makes a GET to (.*)$/, function(endpoint, callback) {
     this.register('url', endpoint);
 
-    const request = this.buildRequest('GET', endpoint, {
-      'x-user-id': this.get('identity')
-    });
+    const headers = this.get('identity') ? { 'x-user-id': this.get('identity')} : {};
+
+    const request = this.buildRequest('GET', endpoint, headers);
 
     this.register('request', request);
     return callback();
