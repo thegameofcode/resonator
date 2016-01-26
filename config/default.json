@@ -24,6 +24,9 @@
         "endpoint": "/api/identity"
       },
       {
+        "endpoint": "/heartbeat"
+      },
+      {
         "endpoint": "/api/notification.*"
       },
       {
