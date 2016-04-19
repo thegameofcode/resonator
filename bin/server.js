@@ -23,8 +23,12 @@ mongoose.connect(config.get('db.conn'), function(err) {
     log.error(err);
   });
 
+  mongoose.connection.on('disconnected', function(err) {
+    log.error('Disconnected from MongoDB', err);
+  });
+
   /* Server */
-  service.listen(options.port, function () {
-    log.info("service is listening on port", options.port);
+  service.listen(options.port, function() {
+    log.info('service is listening on port', options.port);
   });
 });
