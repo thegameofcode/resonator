@@ -18,7 +18,7 @@ describe('Read file: ', function() {
   it('returns an error due to non-existing file or other error', function(done) {
     const output = fileHandler.readFile(INVALID_HTML_PATH);
     expect(output.content).to.equal(undefined);
-    expect(output.error).to.have.property('message', 'HTML template not found');
+    expect(output.error).to.have.property('message', 'Template not found');
     expect(output.error).to.have.property('statusCode', 404);
     expect(output.error).to.have.property('body');
     expect(output.error.body).to.have.property('code', 'NotFoundError');

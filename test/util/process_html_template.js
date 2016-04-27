@@ -41,7 +41,7 @@ describe('Process HTML template: ', function() {
     const processedHtml = processHtmlTemplate(input);
     expect(processedHtml).to.not.have.property('content');
     expect(processedHtml).to.have.property('error');
-    expect(processedHtml.error).to.have.property('message', 'HTML template not found');
+    expect(processedHtml.error).to.have.property('message', 'Template not found');
     expect(processedHtml.error).to.have.property('statusCode', 404);
     expect(processedHtml.error).to.have.property('body');
     expect(processedHtml.error.body).to.have.property('code', 'NotFoundError');

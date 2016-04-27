@@ -124,7 +124,7 @@ describe('Template email', function() {
 
     templatePlatform.getTemplateDetails(templateName, templateType, function(err, details) {
       expect(details).to.equal(undefined);
-      expect(err).to.have.property('message', 'HTML template not found');
+      expect(err).to.have.property('message', 'Template not found');
       expect(err).to.have.property('statusCode', 404);
       expect(err).to.have.property('body');
       expect(err.body).to.have.property('code', 'NotFoundError');
