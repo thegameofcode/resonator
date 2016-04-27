@@ -30,5 +30,5 @@ node_modules
 config.json
 npmrc
 
-# HTML files
-html/*
+# Email template files
+templates/*
