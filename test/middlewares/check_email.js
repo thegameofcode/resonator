@@ -49,7 +49,7 @@ describe('Batch email middleware', function() {
     checkEmail()(request, res, next);
   });
 
-  it('returns a BadRequestError for a missing \'message\' field', function(done) {
+  it('returns a BadRequestError for a missing \'message\' and \'template\' field', function(done) {
 
     delete emailObj.content.message;
     request.body = emailObj;
@@ -59,7 +59,7 @@ describe('Batch email middleware', function() {
     let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
+      expect(error.body.message).to.equal('Missing \'message\' String or \'template\' object property in \'content\'');
       done();
     };
 
@@ -76,7 +76,7 @@ describe('Batch email middleware', function() {
     let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'message\' String property in request body \'content\' object');
+      expect(error.body.message).to.equal('Missing \'message\' String or \'template\' object property in \'content\'');
       done();
     };
 
@@ -99,6 +99,28 @@ describe('Batch email middleware', function() {
   });
 
   it('passes validations for a well-formatted email object', function(done) {
+
+    request.body = emailObj;
+
+    let res = {};
+
+    let next = function(error) {
+      expect(error).to.equal(undefined);
+      done();
+    };
+
+    checkEmail()(request, res, next);
+  });
+
+  it('passes validations for a well-formatted email object with template object', function(done) {
+
+    delete emailObj.content.message;
+    emailObj.content.template = {
+      filename: 'template',
+      placeholders: {
+        USER: 'Mr. Invent'
+      }
+    };
 
     request.body = emailObj;
 

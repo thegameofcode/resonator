@@ -40,7 +40,7 @@ describe('Single target email middleware', function() {
     let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'html\' String property in request body');
+      expect(error.body.message).to.equal('Missing \'html\' String or \'template\' object property in request body');
       done();
     };
 
@@ -57,7 +57,7 @@ describe('Single target email middleware', function() {
     let next = function(error) {
       expect(error.statusCode).to.equal(400);
       expect(error.body.code).to.equal('BadRequestError');
-      expect(error.body.message).to.equal('Missing \'html\' String property in request body');
+      expect(error.body.message).to.equal('Missing \'html\' String or \'template\' object property in request body');
       done();
     };
 

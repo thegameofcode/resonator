@@ -1,0 +1,10 @@
+{
+  "error": {
+    "message": "HTML template not found",
+    "statusCode": 404,
+    "body": {
+      "code": "NotFoundError",
+      "message": "HTML template not found"
+    }
+  }
+}
