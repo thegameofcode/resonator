@@ -7,6 +7,7 @@ const templatePlatform = require('./../../lib/platforms/template');
 let fsStub = {};
 
 const VALID_MJML = '<mj-body><mj-section><mj-column><mj-text>Hello World</mj-text></mj-column></mj-section></mj-body>';
+const VALID_HTML = '<html><body><h1>Hello World</h1></body></html>';
 const INVALID_MJML = '<mj-blablabla></mj-blablabla>';
 const READ_FILE_LIST = ['template-1.mjml', 'template-2.mjml', 'template-3.mjml'];
 const FILE_LIST = [{name: 'template-1', type: 'mjml'}, {name: 'template-2', type: 'mjml'}, {name: 'template-3', type: 'mjml'}];
@@ -19,7 +20,6 @@ describe('Template email', function() {
     fsStub.readdir = sinon.stub(fs, 'readdir');
     fsStub.readdir.yields(null, READ_FILE_LIST);
     fsStub.readFileSync = sinon.stub(fs, 'readFileSync');
-    fsStub.readFileSync.returns(VALID_MJML);
     return done();
   });
 
@@ -103,14 +103,34 @@ describe('Template email', function() {
     });
   });
 
-  it('returns the details associated to an HTML template', function(done) {
+  it('returns the details associated to an MJML template', function(done) {
 
     const templateName = 'template';
     const templateType = 'mjml';
+
+    fsStub.readFileSync.returns(VALID_MJML);
+
     templatePlatform.getTemplateDetails(templateName, templateType, function(err, details) {
       expect(err).to.equal(null);
       expect(details).to.have.property('content');
       expect(details.content).to.equal(VALID_MJML);
+      expect(details).to.have.property('placeholders');
+      expect(details.placeholders).to.deep.equal([]);
+      return done();
+    });
+  });
+
+  it('returns the details associated to an MJML template', function(done) {
+
+    const templateName = 'template';
+    const templateType = 'mjml';
+
+    fsStub.readFileSync.returns(VALID_HTML);
+
+    templatePlatform.getTemplateDetails(templateName, templateType, function(err, details) {
+      expect(err).to.equal(null);
+      expect(details).to.have.property('content');
+      expect(details.content).to.equal(VALID_HTML);
       expect(details).to.have.property('placeholders');
       expect(details.placeholders).to.deep.equal([]);
       return done();
