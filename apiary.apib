@@ -621,7 +621,16 @@ Returns a list of the email template filenames currently available
 
 + Response 200
 
-            ['my-template-1.html', 'my-template-2.html']
+            [
+              {
+                "name": "my-template-1",
+                "type": "html",
+              },
+              {
+                "name": "my-template-2",
+                "type": "html"
+              }
+            ]
 
 ## Email template details [/api/notification/template/details/:templateName.:type]
 
