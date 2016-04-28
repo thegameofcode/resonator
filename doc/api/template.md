@@ -76,7 +76,7 @@ Returns a the content of an email template (either HTML or other) and the placeh
               "placeholders": ["USER"]
             }
 
-+ Response 400
++ Response 404
 
             {
               "code": "NotFoundError",

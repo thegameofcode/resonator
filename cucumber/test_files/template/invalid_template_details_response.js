@@ -1,12 +1,18 @@
 'use strict';
 
 module.exports = {
-  status: 500,
-  data: {
+  stubbed: {
     error: {
       code: 'InternalError',
       message: 'Read error'
     },
-    content: undefined
+    output: undefined
+  },
+  result: {
+    status: 500,
+    body: {
+      code: 'InternalError',
+      message: 'Read error'
+    }
   }
 };

@@ -1,10 +1,15 @@
 'use strict';
 
 module.exports = {
-  status: 200,
-  data: {
+  stubbed: {
     error: null,
-    content: {
+    output: {
+      output: 'done'
+    }
+  },
+  result: {
+    status: 200,
+    body: {
       output: 'done'
     }
   }

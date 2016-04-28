@@ -3,9 +3,15 @@
 const errors = require('../../../lib/util/errors');
 
 module.exports = {
-  status: 400,
-  data: {
-    error: new errors.BadRequestError('Missing template name and/or type'),
-    content: undefined
+  stubbed: {
+    error: new errors.BadRequestError('Invalid template filename: must have the <basename>.<extension> format'),
+    output: undefined
+  },
+  result: {
+    status: 400,
+    body: {
+      code: 'BadRequestError',
+      message: 'Invalid template filename: must have the <basename>.<extension> format'
+    }
   }
 };

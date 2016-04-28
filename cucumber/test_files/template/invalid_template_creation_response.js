@@ -1,12 +1,17 @@
 'use strict';
+
 const errors = require('../../../lib/util/errors');
 
 module.exports = {
-  status: 400,
-  data: {
-    error: new errors.BadRequestError('Creation error'),
-    content: {
-      output: 'done'
+  stubbed: {
+    error: new errors.BadRequestError('Missing or invalid parameters: content, filename, type'),
+    output: undefined
+  },
+  result: {
+    status: 400,
+    body: {
+      code: 'BadRequestError',
+      message: 'Missing or invalid parameters: content, filename, type'
     }
   }
 };

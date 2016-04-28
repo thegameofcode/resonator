@@ -105,12 +105,11 @@ describe('Template email', function() {
 
   it('returns the details associated to an MJML template', function(done) {
 
-    const templateName = 'template';
-    const templateType = 'mjml';
+    const templateName = 'template.mjml';
 
     fsStub.readFileSync.returns(VALID_MJML);
 
-    templatePlatform.getTemplateDetails(templateName, templateType, function(err, details) {
+    templatePlatform.getTemplateDetails(templateName, function(err, details) {
       expect(err).to.equal(null);
       expect(details).to.have.property('content');
       expect(details.content).to.equal(VALID_MJML);
@@ -122,12 +121,11 @@ describe('Template email', function() {
 
   it('returns the details associated to an MJML template', function(done) {
 
-    const templateName = 'template';
-    const templateType = 'mjml';
+    const templateName = 'template.mjml';
 
     fsStub.readFileSync.returns(VALID_HTML);
 
-    templatePlatform.getTemplateDetails(templateName, templateType, function(err, details) {
+    templatePlatform.getTemplateDetails(templateName, function(err, details) {
       expect(err).to.equal(null);
       expect(details).to.have.property('content');
       expect(details.content).to.equal(VALID_HTML);
@@ -138,17 +136,29 @@ describe('Template email', function() {
   });
 
   it('fails because of not found HTML template', function(done) {
-    const templateName = 'no-file';
-    const templateType = 'mjml';
+    const templateName = 'no-file.mjml';
 
     fsStub.readFileSync.throws(new Error('Not Found'));
 
-    templatePlatform.getTemplateDetails(templateName, templateType, function(err, details) {
+    templatePlatform.getTemplateDetails(templateName, function(err, details) {
       expect(details).to.equal(undefined);
       expect(err).to.have.property('message', 'Template not found');
       expect(err).to.have.property('statusCode', 404);
       expect(err).to.have.property('body');
       expect(err.body).to.have.property('code', 'NotFoundError');
+      return done();
+    });
+  });
+
+  it('fails because of missing extension in requested HTML template filename', function(done) {
+    const templateName = 'invalid-format';
+
+    templatePlatform.getTemplateDetails(templateName, function(err, details) {
+      expect(details).to.equal(undefined);
+      expect(err).to.have.property('message', 'Invalid template filename: must have the <basename>.<extension> format');
+      expect(err).to.have.property('statusCode', 400);
+      expect(err).to.have.property('body');
+      expect(err.body).to.have.property('code', 'BadRequestError');
       return done();
     });
   });

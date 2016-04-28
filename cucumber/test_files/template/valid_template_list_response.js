@@ -1,9 +1,38 @@
 'use strict';
 
 module.exports = {
-  status: 200,
-  data: {
+  stubbed: {
     error: null,
-    content: ['template-1', 'template-2', 'template-3']
+    output: [
+      {
+        name: 'template-1',
+        type: 'html'
+      },
+      {
+        name: 'template-2',
+        type: 'html'
+      },
+      {
+        name: 'template-3',
+        type: 'html'
+      }
+    ]
+  },
+  result: {
+    status: 200,
+    body: [
+      {
+        name: 'template-1',
+        type: 'html'
+      },
+      {
+        name: 'template-2',
+        type: 'html'
+      },
+      {
+        name: 'template-3',
+        type: 'html'
+      }
+    ]
   }
-};
+}
