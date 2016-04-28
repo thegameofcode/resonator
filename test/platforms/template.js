@@ -8,7 +8,8 @@ let fsStub = {};
 
 const VALID_MJML = '<mj-body><mj-section><mj-column><mj-text>Hello World</mj-text></mj-column></mj-section></mj-body>';
 const INVALID_MJML = '<mj-blablabla></mj-blablabla>';
-const FILE_LIST = ['template-1', 'template-2', 'template-3'];
+const READ_FILE_LIST = ['template-1.mjml', 'template-2.mjml', 'template-3.mjml'];
+const FILE_LIST = [{name: 'template-1', type: 'mjml'}, {name: 'template-2', type: 'mjml'}, {name: 'template-3', type: 'mjml'}];
 
 describe('Template email', function() {
 
@@ -16,7 +17,7 @@ describe('Template email', function() {
     fsStub.writeFile = sinon.stub(fs, 'writeFile');
     fsStub.writeFile.yields(null);
     fsStub.readdir = sinon.stub(fs, 'readdir');
-    fsStub.readdir.yields(null, FILE_LIST);
+    fsStub.readdir.yields(null, READ_FILE_LIST);
     fsStub.readFileSync = sinon.stub(fs, 'readFileSync');
     fsStub.readFileSync.returns(VALID_MJML);
     return done();

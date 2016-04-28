@@ -24,4 +24,20 @@ describe('Read file: ', function() {
     expect(output.error.body).to.have.property('code', 'NotFoundError');
     return done();
   });
+
+  it('returns a basename and an extension for a filename', function(done) {
+    const filename = 'template.erb.html';
+    const output = fileHandler.getFilenameInfo(filename);
+    expect(output).to.have.length(3);
+    expect(output[1]).to.equal('template.erb');
+    expect(output[2]).to.equal('html');
+    return done();
+  });
+
+  it('returns null for a filename without extension', function(done) {
+    const filename = 'template';
+    const output = fileHandler.getFilenameInfo(filename);
+    expect(output).to.equal(null);
+    return done();
+  });
 });
