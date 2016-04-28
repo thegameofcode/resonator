@@ -1,0 +1,5 @@
+{
+  "filename": "custom-template",
+  "content": "<mj-body><mj-section><mj-column><mj-text>Greetings, {{USER}}!</mj-text></mj-column></mj-section></mj-body>",
+  "type": "mjml"
+}

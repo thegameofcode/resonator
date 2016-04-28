@@ -15,9 +15,29 @@
       "message": "Hola holita RESONATOR"
     }
   },
-  "single_email": {
+  "html_single_email": {
     "to": "mac@into.sh",
     "html": "Echo echo echo!",
+    "subject": "Testing"
+  },
+  "mjml_single_email": {
+    "to": "mac@into.sh",
+    "template": {
+      "filename": "template",
+      "placeholders": {
+        "USER": "Mr. Invent"
+      }
+    },
+    "subject": "Testing"
+  },
+  "invalid_mjml_single_email": {
+    "to": "mac@into.sh",
+    "template": {
+      "filename": "no-file",
+      "placeholders": {
+        "USER": "Mr. Invent"
+      }
+    },
     "subject": "Testing"
   }
 }

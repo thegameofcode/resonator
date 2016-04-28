@@ -14,6 +14,7 @@ Source code is available [here](https://github.com/thegameofcode/resonator).
 !include(doc/api/sms.md)
 !include(doc/api/email.md)
 !include(doc/api/push.md)
+!include(doc/api/template.md)
 
 # Data Structures
 

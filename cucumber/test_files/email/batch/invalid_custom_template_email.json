@@ -1,0 +1,15 @@
+{
+  "identities": ["01f0000000000000003f0002"],
+  "channels": ["buddies"],
+  "content": {
+    "to": "john@doe.com",
+    "from": "mac@into.sh",
+    "template": {
+      "filename": "no-file",
+      "placeholders": {}
+    },
+    "subject": "Testing"
+  }
+}
+
+
