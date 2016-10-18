@@ -31,7 +31,7 @@ deployment:
       - "printf \"_auth=$NPM_AUTH\\nemail=$NPM_USERNAME\\n\" > npmrc"
       - npm publish --userconfig npmrc
       - rm npmrc
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS
       - docker tag resonator:testing $DOCKERHUB_BASE/resonator:$VERSION
       - docker push $DOCKERHUB_BASE/resonator:$VERSION
       - docker tag resonator:testing $DOCKERHUB_BASE/resonator:latest
